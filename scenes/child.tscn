@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=9 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="1_jtq7h"]
 [ext_resource type="Texture2D" uid="uid://c8yjw6nr30bjk" path="res://ressources/textures/light_cone.png" id="2_nk0df"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_435t3"]
-size = Vector2(76, 126)
+size = Vector2(50, 110)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cs4fa"]
 radius = 83.006
@@ -24,12 +24,15 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_doehs"]
+size = Vector2(24, 124)
+
 [node name="Child" type="CharacterBody2D"]
 z_index = 10
 script = ExtResource("1_dso0k")
 
 [node name="ChildSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.609375, 1)
+scale = Vector2(0.40625, 0.875)
 texture = ExtResource("1_jtq7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,6 +77,15 @@ theme_override_styles/background = SubResource("StyleBoxFlat_mfnp8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_77u7d")
 value = 100.0
 show_percentage = false
+
+[node name="LadderDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetector"]
+shape = SubResource("RectangleShape2D_doehs")
+debug_color = Color(0.470588, 0.501961, 0.25098, 0.419608)
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]

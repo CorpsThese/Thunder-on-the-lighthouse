@@ -553,7 +553,7 @@ texture = ExtResource("2_qqoln")
 5:8/0 = 0
 5:8/0/terrain_set = 0
 5:8/0/terrain = 2
-5:8/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:8/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, 5.5, 8, 5.5, 8, 8, -8, 8)
 5:8/0/terrains_peering_bit/bottom_side = 2
 1:9/0 = 0
 2:9/0 = 0
@@ -648,7 +648,7 @@ texture = ExtResource("2_qqoln")
 [sub_resource type="TileSet" id="TileSet_3swrq"]
 physics_layer_0/collision_layer = 1
 physics_layer_1/collision_layer = 8
-physics_layer_1/collision_mask = 9
+physics_layer_1/collision_mask = 8
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)

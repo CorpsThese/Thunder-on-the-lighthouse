@@ -12,20 +12,30 @@ signal fear_depleted
 @onready var fear_bar: ProgressBar = %FearBar
 @onready var hurt_box: Area2D = %HurtBox
 
-@onready var ladder_in_range: bool = true
+@onready var ladder_detector: Area2D = %LadderDetector
+@onready var is_ladder_in_range: bool = true
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	# Get down platform
 	if Input.is_action_just_pressed("move_down"):
 		position.y += 1
+	# Move on ladder
+	if ladder_detector.has_overlapping_bodies():
+		var direction_vertical := Input.get_axis("move_up", "move_down")
+		if direction_vertical:
+			velocity.y = direction_vertical * SPEED
+		else:
+			velocity.y = move_toward(velocity.y, 0, SPEED)
+	else:
+		# Add the gravity.
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -48,6 +58,7 @@ func _physics_process(delta: float) -> void:
 		fear_bar.value = health
 		if health <= 0.0:
 			fear_depleted.emit()
+
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
