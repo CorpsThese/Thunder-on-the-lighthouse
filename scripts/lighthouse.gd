@@ -1,8 +1,11 @@
 extends Node
 
 @onready var game_ui: Control = $GameUI
-@onready var ghost_spawn_position: PathFollow2D = %GhostSpawnPosition
 @onready var child: CharacterBody2D = %Child
+
+@onready var ghost_spawn_position: PathFollow2D = %GhostSpawnPosition
+var ghost_counter := 0
+const max_ghost := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,14 +21,17 @@ func spawn_ghost() -> void:
 	ghost_spawn_position.progress_ratio = randf()
 	new_ghost.global_position = ghost_spawn_position.global_position
 	new_ghost.player = child
+	ghost_counter += 1
 	add_child(new_ghost)
 	new_ghost.connect("ghost_defeated", delete_ghost)
 
 
 func _on_ghost_spawn_timer_timeout() -> void:
-	spawn_ghost()
+	if ghost_counter < max_ghost:
+		spawn_ghost()
 
 func delete_ghost(ghost: CharacterBody2D) -> void:
+	ghost_counter -= 1
 	ghost.queue_free()
 
 func _on_child_fear_depleted() -> void:
