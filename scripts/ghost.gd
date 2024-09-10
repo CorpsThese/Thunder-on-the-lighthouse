@@ -1,8 +1,9 @@
 extends CharacterBody2D
 class_name Ghost
 
-const SPEED = 150.0
+const SPEED = 100.0
 var player : CharacterBody2D
+var is_in_range := false
 
 var light_value := 0.0
 var DAMAGE_RATE := 10.0
@@ -12,11 +13,11 @@ signal ghost_defeated
 
 
 func _physics_process(delta: float) -> void:
-	var direction := global_position.direction_to(player.global_position)
-	velocity = direction * SPEED
-	move_and_slide()
+	if !is_in_range:
+		var direction := global_position.direction_to(player.global_position)
+		velocity = direction * SPEED
+		move_and_slide()
 
-#
 	var light : Array[Area2D] = hurt_box.get_overlapping_areas()
 	if light.size() > 0:
 		light_value += DAMAGE_RATE * light.size()* delta

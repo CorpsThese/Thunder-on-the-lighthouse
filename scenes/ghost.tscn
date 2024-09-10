@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/ghost.gd" id="1_mtd7o"]
 [ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="2_eh2y8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1km8w"]
-size = Vector2(54, 56)
+[sub_resource type="CircleShape2D" id="CircleShape2D_p0p35"]
+radius = 10.198
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e3ggc"]
 radius = 39.2046
@@ -24,17 +24,18 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="Ghost" type="CharacterBody2D"]
+z_index = 10
 collision_layer = 2
-collision_mask = 18
+collision_mask = 2
 script = ExtResource("1_mtd7o")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_1km8w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.277528, 0.277528, 0.277528, 1)
 scale = Vector2(0.4375, 0.4375)
 texture = ExtResource("2_eh2y8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p0p35")
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true

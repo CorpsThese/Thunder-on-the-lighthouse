@@ -53,3 +53,13 @@ func _physics_process(delta: float) -> void:
 		fear_bar.value = health
 		if health <= 0.0:
 			fear_depleted.emit()
+
+
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	body.is_in_range = true
+	pass # Replace with function body.
+
+
+func _on_hurt_box_body_exited(body: Node2D) -> void:
+	body.is_in_range = false
+	pass # Replace with function body.

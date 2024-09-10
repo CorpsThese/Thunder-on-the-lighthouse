@@ -43,7 +43,6 @@ func _on_continue_pressed() -> void:
 	get_tree().paused = false
 	%Pause.hide()
 
-
 func _on_retry_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
