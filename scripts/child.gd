@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var child_sprite: Sprite2D = $ChildSprite
 @onready var torchlight: Node2D = $Torchlight
 @onready var torchlight_sprite: Sprite2D = $Torchlight/TorchlightSprite
+@onready var torchlight_light: Area2D = $Torchlight/TorchlightLight
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -615.0
@@ -11,7 +12,6 @@ var health := 100.0
 var DAMAGE_RATE := 5.0
 signal fear_depleted
 @onready var fear_bar: ProgressBar = %FearBar
-
 @onready var hurt_box: Area2D = %HurtBox
 
 @onready var ladder_in_range: bool = true
@@ -40,16 +40,16 @@ func _physics_process(delta: float) -> void:
 
 	if direction < 0.0:
 		child_sprite.flip_h = true
-		torchlight.rotation_degrees = 180
-		torchlight_sprite.flip_v = true
+		#torchlight.rotation_degrees = 180
+		#torchlight_sprite.flip_v = true
 	elif direction > 0.0:
 		child_sprite.flip_h = false
-		torchlight.rotation_degrees = 0
-		torchlight_sprite.flip_v = false
+		#torchlight.rotation_degrees = 0
+		#torchlight_sprite.flip_v = false
 
-	var overlapping_ghosts : Array[Node2D] = hurt_box.get_overlapping_bodies()
-	if overlapping_ghosts.size() > 0:
-		health -= DAMAGE_RATE * overlapping_ghosts.size() * delta
+	var attacking_ghosts : Array[Node2D] = hurt_box.get_overlapping_bodies()
+	if attacking_ghosts.size() > 0:
+		health -= DAMAGE_RATE * attacking_ghosts.size() * delta
 		fear_bar.value = health
 		if health <= 0.0:
 			fear_depleted.emit()

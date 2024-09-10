@@ -7,10 +7,6 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawn_ghost()
-	spawn_ghost()
-	spawn_ghost()
-	spawn_ghost()
 	pass # Replace with function body.
 
 
@@ -46,7 +42,6 @@ func _input(event: InputEvent) -> void:
 func _on_continue_pressed() -> void:
 	get_tree().paused = false
 	%Pause.hide()
-	pass # Replace with function body.
 
 
 func _on_retry_pressed() -> void:
