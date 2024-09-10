@@ -38,6 +38,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 
+	torchlight.look_at(get_global_mouse_position())
 	if direction < 0.0:
 		child_sprite.flip_h = true
 		#torchlight.rotation_degrees = 180
