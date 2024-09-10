@@ -1,6 +1,5 @@
 extends Node
 
-@onready var level: Node2D = $Level
 @onready var game_ui: Control = $GameUI
 @onready var ghost_spawn_position: PathFollow2D = %GhostSpawnPosition
 @onready var child: CharacterBody2D = %Child
@@ -12,7 +11,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
 	pass
 
 func spawn_ghost() -> void:

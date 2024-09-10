@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 @onready var child_sprite: Sprite2D = $ChildSprite
 @onready var torchlight: Node2D = $Torchlight
-@onready var torchlight_sprite: Sprite2D = $Torchlight/TorchlightSprite
-@onready var torchlight_light: Area2D = $Torchlight/TorchlightLight
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -615.0
@@ -41,12 +39,8 @@ func _physics_process(delta: float) -> void:
 	torchlight.look_at(get_global_mouse_position())
 	if direction < 0.0:
 		child_sprite.flip_h = true
-		#torchlight.rotation_degrees = 180
-		#torchlight_sprite.flip_v = true
 	elif direction > 0.0:
 		child_sprite.flip_h = false
-		#torchlight.rotation_degrees = 0
-		#torchlight_sprite.flip_v = false
 
 	var attacking_ghosts : Array[Node2D] = hurt_box.get_overlapping_bodies()
 	if attacking_ghosts.size() > 0:
