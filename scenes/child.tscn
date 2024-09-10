@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmqg83tvc3wae"]
+
+[ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
+[ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="1_jtq7h"]
+[ext_resource type="Texture2D" uid="uid://c8yjw6nr30bjk" path="res://ressources/textures/light_cone.png" id="2_nk0df"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_435t3"]
+size = Vector2(72, 126)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cs4fa"]
+radius = 83.006
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfnp8"]
+bg_color = Color(0, 0, 0, 0.784314)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77u7d"]
+bg_color = Color(0.331067, 0.688637, 0.431668, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Child" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_dso0k")
+
+[node name="ChildSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.609375, 1)
+texture = ExtResource("1_jtq7h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_435t3")
+
+[node name="Torchlight" type="Node2D" parent="."]
+
+[node name="TorchlightSprite" type="Sprite2D" parent="Torchlight"]
+position = Vector2(64, 0)
+scale = Vector2(0.296875, 0.171875)
+texture = ExtResource("1_jtq7h")
+
+[node name="Area2D" type="Area2D" parent="Torchlight"]
+position = Vector2(64, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Torchlight/Area2D"]
+self_modulate = Color(1, 1, 0.686275, 1)
+texture = ExtResource("2_nk0df")
+offset = Vector2(112, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torchlight/Area2D"]
+polygon = PackedVector2Array(209, -76, 16, -3, 16, 3, 209, 75)
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_cs4fa")
+debug_color = Color(0.920395, 0.256096, 0.304642, 0.42)
+
+[node name="FearBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -37.0
+offset_top = 73.0
+offset_right = 39.0
+offset_bottom = 86.0
+theme_override_styles/background = SubResource("StyleBoxFlat_mfnp8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_77u7d")
+value = 100.0
+show_percentage = false
