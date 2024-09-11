@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://djlsmgjgtunpu"]
 
-[ext_resource type="Script" path="res://scripts/ghost.gd" id="1_mtd7o"]
-[ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="2_eh2y8"]
+[ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="1_7lu3g"]
+[ext_resource type="Script" path="res://scripts/shadow.gd" id="1_o5nhj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p0p35"]
 radius = 10.198
@@ -23,16 +23,16 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Ghost" type="CharacterBody2D"]
+[node name="Shadow" type="CharacterBody2D"]
 z_index = 10
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_mtd7o")
+script = ExtResource("1_o5nhj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.277528, 0.277528, 0.277528, 1)
 scale = Vector2(0.4375, 0.4375)
-texture = ExtResource("2_eh2y8")
+texture = ExtResource("1_7lu3g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_p0p35")

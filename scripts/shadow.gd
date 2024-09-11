@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Ghost
+class_name shadow
 
 const SPEED = 100.0
 var player : CharacterBody2D
@@ -7,7 +7,7 @@ var is_in_range := false
 
 var light_value := 0.0
 var DAMAGE_RATE := 10.0
-signal ghost_defeated
+signal shadow_defeated
 @onready var light_bar: ProgressBar = %LightBar
 @onready var hurt_box: Area2D = %HurtBox
 
@@ -23,4 +23,4 @@ func _physics_process(delta: float) -> void:
 		light_value += DAMAGE_RATE * light.size()* delta
 		light_bar.value = light_value
 		if light_value >= 10.0:
-			ghost_defeated.emit(self)
+			shadow_defeated.emit(self)

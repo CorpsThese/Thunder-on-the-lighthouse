@@ -8,13 +8,14 @@ const JUMP_VELOCITY = -615.0
 
 var health := 100.0
 var DAMAGE_RATE := 5.0
-signal fear_depleted
-@onready var fear_bar: ProgressBar = %FearBar
+signal courage_depleted
+@onready var courage_bar: ProgressBar = %CourageBar
 @onready var hurt_box: Area2D = %HurtBox
 
 @onready var ladder_detector: Area2D = %LadderDetector
-@onready var is_ladder_in_range: bool = true
 @onready var is_climbing:bool = false
+
+@onready var window_detector: Area2D = %WindowDetector
 
 
 func _physics_process(delta: float) -> void:
@@ -58,12 +59,18 @@ func _physics_process(delta: float) -> void:
 	elif direction > 0.0:
 		child_sprite.flip_h = false
 
-	var attacking_ghosts : Array[Node2D] = hurt_box.get_overlapping_bodies()
-	if attacking_ghosts.size() > 0:
-		health -= DAMAGE_RATE * attacking_ghosts.size() * delta
-		fear_bar.value = health
+	var attacking_shadows : Array[Node2D] = hurt_box.get_overlapping_bodies()
+	if attacking_shadows.size() > 0:
+		health -= DAMAGE_RATE * attacking_shadows.size() * delta
+		courage_bar.value = health
 		if health <= 0.0:
-			fear_depleted.emit()
+			courage_depleted.emit()
+
+	if window_detector.has_overlapping_bodies():
+		if Input.is_action_just_pressed("interact"):
+			var window := window_detector.get_overlapping_bodies()[0]
+			window.open()
+
 
 
 

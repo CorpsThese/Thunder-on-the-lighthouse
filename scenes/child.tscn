@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=10 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="1_jtq7h"]
@@ -26,6 +26,9 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_doehs"]
 size = Vector2(24, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_582br"]
+size = Vector2(46, 54)
 
 [node name="Child" type="CharacterBody2D"]
 z_index = 10
@@ -55,6 +58,7 @@ texture = ExtResource("2_nk0df")
 offset = Vector2(112, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torchlight/TorchlightLight"]
+visible = false
 polygon = PackedVector2Array(209, -76, 16, -3, 16, 3, 209, 75)
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -66,7 +70,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_cs4fa")
 debug_color = Color(0.920395, 0.256096, 0.304642, 0.42)
 
-[node name="FearBar" type="ProgressBar" parent="."]
+[node name="CourageBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 offset_left = -37.0
 offset_top = 73.0
@@ -85,6 +89,15 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetector"]
 shape = SubResource("RectangleShape2D_doehs")
 debug_color = Color(0.470588, 0.501961, 0.25098, 0.419608)
+
+[node name="WindowDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindowDetector"]
+shape = SubResource("RectangleShape2D_582br")
+debug_color = Color(0.580941, 0.4581, 0.176535, 0.419608)
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]
