@@ -22,6 +22,8 @@ signal courage_depleted
 signal key_updated
 var key_counter := 0
 
+signal flashlight_used
+
 func _physics_process(delta: float) -> void:
 
 	# Add the gravity, deactivated on climbing
@@ -66,6 +68,7 @@ func _physics_process(delta: float) -> void:
 
 	#Turn on/off the flashlight
 	if Input.is_action_just_pressed("flashlight"):
+		emit_signal("flashlight_used")
 		$Flashlight/FlashlightAudio.play()
 		flashlight.visible = !flashlight.visible
 		$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = !$Flashlight/TorchlightLight/CollisionPolygon2D.disabled

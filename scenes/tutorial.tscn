@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cjo607hfvr2dn"]
+[gd_scene load_steps=29 format=4 uid="uid://cjo607hfvr2dn"]
 
 [ext_resource type="Script" path="res://scripts/lighthouse.gd" id="1_j7rth"]
 [ext_resource type="PackedScene" uid="uid://cmqg83tvc3wae" path="res://scenes/child.tscn" id="2_4cjjo"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://b75oemjfxvwkj" path="res://scenes/volume_slider.tscn" id="6_n0ra0"]
 [ext_resource type="PackedScene" uid="uid://0d2mdm6qwo1t" path="res://scenes/door.tscn" id="6_v7ot6"]
 [ext_resource type="PackedScene" uid="uid://dwvrpe4k8x7cg" path="res://scenes/key.tscn" id="7_lh78b"]
+[ext_resource type="Texture2D" uid="uid://bumwesb1lkm" path="res://ressources/textures/tile_0077.png" id="8_61tsg"]
+[ext_resource type="Script" path="res://scenes/flashlight_tip.gd" id="8_lm2wr"]
 [ext_resource type="AudioStream" uid="uid://7t4s4lwp0qyi" path="res://ressources/audio/onesoundtorulethemall__thunder15.wav" id="9_yuavh"]
 [ext_resource type="AudioStream" uid="uid://dfile7s7lem0k" path="res://ressources/audio/pnmcarrierailfan__thunder-claps-single-clap-02.wav" id="10_36yj2"]
 [ext_resource type="AudioStream" uid="uid://b5udcelwcwbhs" path="res://ressources/audio/bastipictures__rain-against-window.mp3" id="11_tjr0p"]
@@ -776,6 +778,42 @@ sources/0 = SubResource("TileSetAtlasSource_c36rp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bxn1u"]
 
+[sub_resource type="Animation" id="Animation_ya3hn"]
+resource_name = "fadeout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lgu20"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3boht"]
+_data = {
+"RESET": SubResource("Animation_lgu20"),
+"fadeout": SubResource("Animation_ya3hn")
+}
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_br5h4"]
 playback_mode = 1
 random_pitch = 3.0
@@ -903,6 +941,7 @@ limit_bottom = 1080
 scale = Vector2(5, 5)
 
 [node name="Darkness" type="CanvasModulate" parent="Level"]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Background" type="TileMapLayer" parent="Level"]
@@ -935,6 +974,25 @@ position = Vector2(48, 136)
 
 [node name="Key2" parent="Level" instance=ExtResource("7_lh78b")]
 position = Vector2(320, 112)
+
+[node name="FlashlightTip" type="Label" parent="Level"]
+offset_left = 96.8
+offset_top = 162.2
+offset_right = 256.8
+offset_bottom = 185.2
+scale = Vector2(0.392, 0.392)
+text = "Click     for flashlight"
+script = ExtResource("8_lm2wr")
+
+[node name="Tile0077" type="Sprite2D" parent="Level/FlashlightTip"]
+position = Vector2(46.4, 12)
+scale = Vector2(1, 1)
+texture = ExtResource("8_61tsg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/FlashlightTip"]
+libraries = {
+"": SubResource("AnimationLibrary_3boht")
+}
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 
@@ -1149,6 +1207,7 @@ libraries = {
 }
 
 [connection signal="courage_depleted" from="Child" to="." method="_on_child_courage_depleted"]
+[connection signal="flashlight_used" from="Child" to="Level/FlashlightTip" method="_on_child_flashlight_used"]
 [connection signal="key_updated" from="Child" to="." method="_on_child_key_updated"]
 [connection signal="timeout" from="ShadowSpawnTimer" to="." method="_on_shadow_spawn_timer_timeout"]
 [connection signal="window_opened" from="Level/Window" to="." method="_on_window_window_opened"]
