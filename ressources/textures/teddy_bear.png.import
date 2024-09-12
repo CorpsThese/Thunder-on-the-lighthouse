@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6x8vtuhef6ki"
-path="res://.godot/imported/child.png-e7ec8a949de10b37188bedfd950f721e.ctex"
+uid="uid://de681d4sd88pj"
+path="res://.godot/imported/teddy_bear.png-9e42049129b4f71f0121d1d7ed60495b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/textures/child.png"
-dest_files=["res://.godot/imported/child.png-e7ec8a949de10b37188bedfd950f721e.ctex"]
+source_file="res://ressources/textures/teddy_bear.png"
+dest_files=["res://.godot/imported/teddy_bear.png-9e42049129b4f71f0121d1d7ed60495b.ctex"]
 
 [params]
 
