@@ -15,11 +15,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+# Opens the window by changing the sprite
+# change the value of is_opened so it can light_up and
+# Signal used by lighthouse.gd to start a wave
 func open() -> void:
 	$WindowSprite.texture = load("res://ressources/textures/opened_window.png")
 	emit_signal("window_opened")
 	is_opened = true
+	$CollisionShape2D.disabled = true
 
+# Called by lighthouse.gd when a thunder is incoming
+# Light up the window according to the current level
 func light_up(level: int) -> void:
 	if is_opened:
 		match level:

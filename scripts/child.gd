@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 @onready var child_sprite: Sprite2D = $ChildSprite
-@onready var torchlight: Node2D = $Torchlight
+@onready var flashlight: Node2D = $Flashlight
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -615.0
+const JUMP_VELOCITY = -500.0
 
 var health := 100.0
 var DAMAGE_RATE := 5.0
@@ -17,12 +17,17 @@ signal courage_depleted
 
 @onready var window_detector: Area2D = %WindowDetector
 
+@onready var door_detector: Area2D = %DoorDetector
+@onready var key_detector: Area2D = %KeyDetector
+signal key_updated
+var key_counter := 0
 
 func _physics_process(delta: float) -> void:
 
-	# Add the gravity.
+	# Add the gravity, deactivated on climbing
 	if not is_on_floor() and not is_climbing:
 		velocity += get_gravity() * delta
+	# Turn off climbing once we touch floor
 	if is_on_floor():
 		is_climbing = false
 	# Handle jump
@@ -53,12 +58,21 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 
-	torchlight.look_at(get_global_mouse_position())
+	#Flip sprite depend where the face or faced last
 	if direction < 0.0:
 		child_sprite.flip_h = true
 	elif direction > 0.0:
 		child_sprite.flip_h = false
 
+	#Turn on/off the flashlight
+	if Input.is_action_just_pressed("flashlight"):
+		flashlight.visible = !flashlight.visible
+		$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = !$Flashlight/TorchlightLight/CollisionPolygon2D.disabled
+	#Points the flashlight
+	flashlight.look_at(get_global_mouse_position())
+
+
+	#Calculate damage according to how many shadow are in range
 	var attacking_shadows : Array[Node2D] = hurt_box.get_overlapping_bodies()
 	if attacking_shadows.size() > 0:
 		health -= DAMAGE_RATE * attacking_shadows.size() * delta
@@ -66,19 +80,40 @@ func _physics_process(delta: float) -> void:
 		if health <= 0.0:
 			courage_depleted.emit()
 
+	#Check if there is a window in range
+	#if interact opens it
 	if window_detector.has_overlapping_bodies():
 		if Input.is_action_just_pressed("interact"):
 			var window := window_detector.get_overlapping_bodies()[0]
 			window.open()
 
+	#Detects key and gather it
+	if key_detector.has_overlapping_bodies():
+		key_detector.get_overlapping_bodies()[0].queue_free()
+		key_counter += 1
+		emit_signal("key_updated", key_counter)
+	#Check if there is a door next to the player
+	#if interact tries to open
+	#only opens if there is a key, else emit signal to start a sound
+	if door_detector.has_overlapping_bodies():
+		if Input.is_action_just_pressed("interact"):
+			if key_counter > 0:
+				key_counter -= 1
+				emit_signal("key_updated", key_counter)
+				var door := door_detector.get_overlapping_bodies()[0]
+				door.open()
+				$DoorOpened.play()
+			else:
+				$DoorLocked.play()
 
 
-
+#if shadow gets in range tells it so it stops getting closer
 func _on_hurt_box_body_entered(body: Node2D) -> void:
 	body.is_in_range = true
 	pass # Replace with function body.
 
 
+#if shadow gets out of range range tells it so it chases again
 func _on_hurt_box_body_exited(body: Node2D) -> void:
 	body.is_in_range = false
 	pass # Replace with function body.
