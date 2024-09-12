@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 @onready var child_sprite: Sprite2D = $ChildSprite
-@onready var torchlight: Node2D = $Torchlight
+@onready var flashlight: Node2D = $Flashlight
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -615.0
+const JUMP_VELOCITY = -500.0
 
 var health := 100.0
 var DAMAGE_RATE := 5.0
@@ -64,11 +64,12 @@ func _physics_process(delta: float) -> void:
 	elif direction > 0.0:
 		child_sprite.flip_h = false
 
-	#Turn on/off the torchlight
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		torchlight.visible = !torchlight.visible
-	#Points the torchlight
-	torchlight.look_at(get_global_mouse_position())
+	#Turn on/off the flashlight
+	if Input.is_action_just_pressed("flashlight"):
+		flashlight.visible = !flashlight.visible
+		$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = !$Flashlight/TorchlightLight/CollisionPolygon2D.disabled
+	#Points the flashlight
+	flashlight.look_at(get_global_mouse_position())
 
 
 	#Calculate damage according to how many shadow are in range
@@ -96,7 +97,7 @@ func _physics_process(delta: float) -> void:
 	#only opens if there is a key, else emit signal to start a sound
 	if door_detector.has_overlapping_bodies():
 		if Input.is_action_just_pressed("interact"):
-			if key_counter >= 0:
+			if key_counter > 0:
 				key_counter -= 1
 				emit_signal("key_updated", key_counter)
 				var door := door_detector.get_overlapping_bodies()[0]

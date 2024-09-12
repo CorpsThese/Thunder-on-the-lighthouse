@@ -1,13 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=17 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="1_jtq7h"]
 [ext_resource type="Texture2D" uid="uid://c8yjw6nr30bjk" path="res://ressources/textures/light_cone.png" id="2_nk0df"]
+[ext_resource type="AudioStream" uid="uid://b7fndkadro30c" path="res://ressources/audio/sadiquecat__flashlight-button-press_1.wav" id="4_0s60n"]
 [ext_resource type="AudioStream" uid="uid://cqv0r1khh0d0i" path="res://ressources/audio/benjaminnelan__door-locked.wav" id="4_7fuph"]
+[ext_resource type="AudioStream" uid="uid://b54ngs1gn42fj" path="res://ressources/audio/sadiquecat__flashlight-button-press_2.wav" id="5_35wil"]
 [ext_resource type="AudioStream" uid="uid://psg2b6v1ydao" path="res://ressources/audio/pagancow__dorm-door-opening.wav" id="5_rke8f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_435t3"]
 size = Vector2(50, 110)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ee75a"]
+playback_mode = 1
+random_pitch = 1.2
+streams_count = 2
+stream_0/stream = ExtResource("4_0s60n")
+stream_1/stream = ExtResource("5_35wil")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cs4fa"]
 radius = 83.006
@@ -33,7 +42,7 @@ size = Vector2(24, 124)
 size = Vector2(46, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr6eu"]
-size = Vector2(60, 35)
+size = Vector2(104, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c58j0"]
 size = Vector2(60, 35)
@@ -49,25 +58,28 @@ texture = ExtResource("1_jtq7h")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_435t3")
 
-[node name="Torchlight" type="Node2D" parent="."]
+[node name="Flashlight" type="Node2D" parent="."]
 
-[node name="TorchlightSprite" type="Sprite2D" parent="Torchlight"]
+[node name="TorchlightSprite" type="Sprite2D" parent="Flashlight"]
 position = Vector2(64, 0)
 scale = Vector2(0.296875, 0.171875)
 texture = ExtResource("1_jtq7h")
 
-[node name="TorchlightLight" type="Area2D" parent="Torchlight"]
+[node name="TorchlightLight" type="Area2D" parent="Flashlight"]
 position = Vector2(64, 0)
 collision_layer = 4
 collision_mask = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="Torchlight/TorchlightLight"]
+[node name="Sprite2D" type="Sprite2D" parent="Flashlight/TorchlightLight"]
 texture = ExtResource("2_nk0df")
 offset = Vector2(112, 0)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Torchlight/TorchlightLight"]
-visible = false
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flashlight/TorchlightLight"]
 polygon = PackedVector2Array(209, -76, 16, -3, 16, 3, 209, 75)
+
+[node name="FlashlightAudio" type="AudioStreamPlayer" parent="Flashlight"]
+stream = SubResource("AudioStreamRandomizer_ee75a")
+bus = &"Sounds"
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -129,9 +141,11 @@ debug_color = Color(0.203184, 0.530685, 0.569075, 0.419608)
 
 [node name="DoorLocked" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_7fuph")
+bus = &"Sounds"
 
 [node name="DoorOpened" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_rke8f")
+bus = &"Sounds"
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]

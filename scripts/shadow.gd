@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * SPEED
 		move_and_slide()
 
-	# Manage damage if in the area of the torchlight
+	# Manage damage if in the area of the flashlight
 	var light : Array[Area2D] = hurt_box.get_overlapping_areas()
 	if light.size() > 0:
 		light_value += DAMAGE_RATE * light.size()* delta

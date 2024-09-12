@@ -22,8 +22,10 @@ func open() -> void:
 	$WindowSprite.texture = load("res://ressources/textures/opened_window.png")
 	emit_signal("window_opened")
 	is_opened = true
+	$CollisionShape2D.disabled = true
 
 # Called by lighthouse.gd when a thunder is incoming
+# Light up the window according to the current level
 func light_up(level: int) -> void:
 	if is_opened:
 		match level:
