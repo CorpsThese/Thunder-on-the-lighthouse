@@ -14,7 +14,7 @@ var shadow_killed := 0
 var is_thunder := false
 @onready var key_label: Label = %KeyLabel
 
-@export var next_level: PackedScene = preload("res://scenes/lighthouse.tscn")
+@export var next_level: PackedScene
 
 
 @onready var music_fader: AnimationPlayer = $MusicFader

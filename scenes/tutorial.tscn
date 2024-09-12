@@ -16,9 +16,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_lqdu0"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -207, -166, 0, 0, 0, 0, 982.657, -259.775, 0, 0, 0, 0, 2177, -161, 0, 0, 0, 0, 2197, 1260, 0, 0, 0, 0, -202, 1250, 0, 0, 0, 0, -207, -166)
+"points": PackedVector2Array(0, 0, 0, 0, -207, -166, 0, 0, 0, 0, 982.657, -259.775, 0, 0, 0, 0, 2177, -161, 0, 0, 0, 0, 2197, 1260, 0, 0, 0, 0, 1830.1, 1270.07, 0, 0, 0, 0, 945.912, 1440, 0, 0, 0, 0, -202, 1250, 0, 0, 0, 0, -207, -166)
 }
-point_count = 6
+point_count = 8
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c36rp"]
 texture = ExtResource("3_x86x7")
@@ -883,20 +883,20 @@ wave_objective = 1
 unique_name_in_owner = true
 position = Vector2(320, 880)
 
-[node name="ShadowSpawnArea" type="Path2D" parent="Child"]
-position = Vector2(-749, -763)
-scale = Vector2(0.569884, 0.542777)
-curve = SubResource("Curve2D_lqdu0")
-
-[node name="ShadowSpawnPosition" type="PathFollow2D" parent="Child/ShadowSpawnArea"]
-unique_name_in_owner = true
-position = Vector2(-207, -166)
-rotation = -0.0786626
-
 [node name="Camera2D" type="Camera2D" parent="Child"]
 limit_left = 0
 limit_right = 1920
 limit_bottom = 1080
+
+[node name="ShadowSpawnArea" type="Path2D" parent="Child/Camera2D"]
+position = Vector2(-224.372, -800)
+scale = Vector2(0.575499, 0.5)
+curve = SubResource("Curve2D_lqdu0")
+
+[node name="ShadowSpawnPosition" type="PathFollow2D" parent="Child/Camera2D/ShadowSpawnArea"]
+unique_name_in_owner = true
+position = Vector2(-207, -166)
+rotation = -0.0786626
 
 [node name="ShadowSpawnTimer" type="Timer" parent="."]
 

@@ -5,7 +5,7 @@ https://incolgames.itch.io/dungeon-platformer-tile-set-pixel-art
 Background
 https://free-game-assets.itch.io/free-horizontal-game-backgrounds
 
-Custom character
+playerSprites_
 https://analogstudios.itch.io/playersprites
 
 Sounds
