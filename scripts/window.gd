@@ -6,6 +6,8 @@ var is_opened: bool = false
 @export var max_repeat := 3
 var repeat := 0
 
+@onready var permanent_light: PointLight2D = $WindowSprite/PermanentLight
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -23,6 +25,7 @@ func open() -> void:
 	emit_signal("window_opened")
 	is_opened = true
 	$CollisionShape2D.disabled = true
+	permanent_light.scale = Vector2(2, 2)
 
 # Called by lighthouse.gd when a thunder is incoming
 # Light up the window according to the current level
