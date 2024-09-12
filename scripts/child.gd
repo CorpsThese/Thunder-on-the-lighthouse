@@ -80,10 +80,13 @@ func _physics_process(delta: float) -> void:
 		courage_bar.value = health
 		if health <= 0.0:
 			courage_depleted.emit()
-
+	
+	var show_interactable_popup := false
+	
 	#Check if there is a window in range
 	#if interact opens it
 	if window_detector.has_overlapping_bodies():
+		show_interactable_popup = true
 		if Input.is_action_just_pressed("interact"):
 			var window := window_detector.get_overlapping_bodies()[0]
 			window.open()
@@ -97,6 +100,7 @@ func _physics_process(delta: float) -> void:
 	#if interact tries to open
 	#only opens if there is a key, else emit signal to start a sound
 	if door_detector.has_overlapping_bodies():
+		show_interactable_popup = true
 		if Input.is_action_just_pressed("interact"):
 			if key_counter > 0:
 				key_counter -= 1
@@ -106,6 +110,8 @@ func _physics_process(delta: float) -> void:
 				$DoorOpened.play()
 			else:
 				$DoorLocked.play()
+	
+	$InteractablePopup.visible = show_interactable_popup
 
 
 #if shadow gets in range tells it so it stops getting closer
