@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=20 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="1_jtq7h"]
@@ -11,6 +11,15 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_435t3"]
 size = Vector2(50, 110)
+
+[sub_resource type="Gradient" id="Gradient_dikww"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_isire"]
+gradient = SubResource("Gradient_dikww")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ee75a"]
 playback_mode = 1
@@ -59,7 +68,13 @@ texture = ExtResource("1_jtq7h")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_435t3")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_isire")
+
 [node name="Flashlight" type="Node2D" parent="."]
+visible = false
 
 [node name="TorchlightSprite" type="Sprite2D" parent="Flashlight"]
 position = Vector2(64, 0)
@@ -72,11 +87,13 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Flashlight/TorchlightLight"]
+visible = false
 texture = ExtResource("2_nk0df")
 offset = Vector2(112, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flashlight/TorchlightLight"]
 polygon = PackedVector2Array(209, -76, 16, -3, 16, 3, 209, 75)
+disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Flashlight/TorchlightLight"]
 position = Vector2(181, -2)
