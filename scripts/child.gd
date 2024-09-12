@@ -22,6 +22,11 @@ signal courage_depleted
 signal key_updated
 var key_counter := 0
 
+var battery := 100.0
+const MAX_BATTERY := 100.0
+const BATTERY_DEPLETE_RATE := 10.0
+const BATTERY_CHARGE_RATE := 20.0
+
 signal flashlight_used
 
 func _physics_process(delta: float) -> void:
@@ -68,10 +73,7 @@ func _physics_process(delta: float) -> void:
 
 	#Turn on/off the flashlight
 	if Input.is_action_just_pressed("flashlight"):
-		emit_signal("flashlight_used")
-		$Flashlight/FlashlightAudio.play()
-		flashlight.visible = !flashlight.visible
-		$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = !$Flashlight/TorchlightLight/CollisionPolygon2D.disabled
+		toggle_flashlight()
 	#Points the flashlight
 	flashlight.look_at(get_global_mouse_position())
 
@@ -115,7 +117,25 @@ func _physics_process(delta: float) -> void:
 				$DoorLocked.play()
 	
 	$InteractablePopup.visible = show_interactable_popup
+	
+	if flashlight.visible:
+		battery -= BATTERY_DEPLETE_RATE * delta
+		battery = max(0, battery)
+		if battery == 0:
+			toggle_flashlight()
+	elif battery != MAX_BATTERY:
+		battery += BATTERY_CHARGE_RATE * delta
+		battery = min(MAX_BATTERY, battery)
+	
+	%BatteryBar.value = battery
+	%BatteryBar.visible = battery != MAX_BATTERY
 
+
+func toggle_flashlight() -> void:
+	emit_signal("flashlight_used")
+	$Flashlight/FlashlightAudio.play()
+	flashlight.visible = !flashlight.visible
+	$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = !$Flashlight/TorchlightLight/CollisionPolygon2D.disabled
 
 #if shadow gets in range tells it so it stops getting closer
 func _on_hurt_box_body_entered(body: Node2D) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=24 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="1_jtq7h"]
@@ -43,6 +43,13 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77u7d"]
 bg_color = Color(0.331067, 0.688637, 0.431668, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gnjj"]
+bg_color = Color(0.792157, 0.690196, 0.431373, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -124,6 +131,17 @@ offset_right = 39.0
 offset_bottom = 86.0
 theme_override_styles/background = SubResource("StyleBoxFlat_mfnp8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_77u7d")
+value = 100.0
+show_percentage = false
+
+[node name="BatteryBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -37.0
+offset_top = 90.0
+offset_right = 39.0
+offset_bottom = 103.0
+theme_override_styles/background = SubResource("StyleBoxFlat_mfnp8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4gnjj")
 value = 100.0
 show_percentage = false
 
