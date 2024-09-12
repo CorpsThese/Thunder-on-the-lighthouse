@@ -891,7 +891,7 @@ curve = SubResource("Curve2D_lqdu0")
 [node name="ShadowSpawnPosition" type="PathFollow2D" parent="Child/ShadowSpawnArea"]
 unique_name_in_owner = true
 position = Vector2(-207, -166)
-rotation = -0.0786627
+rotation = -0.0786626
 
 [node name="Camera2D" type="Camera2D" parent="Child"]
 limit_left = 0

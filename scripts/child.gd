@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 @onready var child_sprite: Sprite2D = $ChildSprite
 @onready var flashlight: Node2D = $Flashlight
+@onready var is_holding_flashlight: bool = false
+@onready var teddy_bear: Node2D = $TeddyBear
+@onready var animation_player: AnimationPlayer = $TeddyBear/AnimationPlayer
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
@@ -66,12 +69,21 @@ func _physics_process(delta: float) -> void:
 
 	#Turn on/off the flashlight
 	if Input.is_action_just_pressed("flashlight"):
+		animation_player.play("put_away")
 		$Flashlight/FlashlightAudio.play()
 		flashlight.visible = !flashlight.visible
 		$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = !$Flashlight/TorchlightLight/CollisionPolygon2D.disabled
-	#Points the flashlight
+	# Points the flashlight
+	# Mouse support
 	flashlight.look_at(get_global_mouse_position())
+	# Controler support
+	#flashlight.look_at(Vector2(Input.get_joy_axis(1, JOY_AXIS_RIGHT_X), Input.get_joy_axis(1, JOY_AXIS_RIGHT_Y)))
 
+	if Input.is_action_just_pressed("cuddle"):
+		flashlight.visible = false
+		animation_player.play("get_closer")
+	if Input.is_action_just_released("cuddle"):
+		animation_player.play("put_away")
 
 	#Calculate damage according to how many shadow are in range
 	var attacking_shadows : Array[Node2D] = hurt_box.get_overlapping_bodies()
@@ -111,10 +123,11 @@ func _physics_process(delta: float) -> void:
 #if shadow gets in range tells it so it stops getting closer
 func _on_hurt_box_body_entered(body: Node2D) -> void:
 	body.is_in_range = true
-	pass # Replace with function body.
-
 
 #if shadow gets out of range range tells it so it chases again
 func _on_hurt_box_body_exited(body: Node2D) -> void:
 	body.is_in_range = false
-	pass # Replace with function body.
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "get_closer":
+		animation_player.play("cuddling")

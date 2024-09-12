@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=26 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="1_jtq7h"]
+[ext_resource type="Texture2D" uid="uid://de681d4sd88pj" path="res://ressources/textures/teddy_bear.png" id="3_2fto3"]
 [ext_resource type="AudioStream" uid="uid://b7fndkadro30c" path="res://ressources/audio/sadiquecat__flashlight-button-press_1.wav" id="4_0s60n"]
 [ext_resource type="AudioStream" uid="uid://cqv0r1khh0d0i" path="res://ressources/audio/benjaminnelan__door-locked.wav" id="4_7fuph"]
 [ext_resource type="Texture2D" uid="uid://kopi7ve0hon4" path="res://ressources/textures/flashlight.png" id="4_307u6"]
@@ -20,6 +21,174 @@ gradient = SubResource("Gradient_dikww")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Animation" id="Animation_7p7kh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TeddyBearSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TeddyBearSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TeddyBearSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5qwpv"]
+resource_name = "get_closer"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TeddyBearSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(31, 30), Vector2(31, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TeddyBearSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TeddyBearSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.4, 1),
+"update": 0,
+"values": [1.5708, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_17u5c"]
+resource_name = "cuddling"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TeddyBearSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.6, 1.4, 1),
+"update": 0,
+"values": [Vector2(31, 0), Vector2(31, -6), Vector2(31, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_jg508"]
+resource_name = "put_away"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TeddyBearSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(31, 0), Vector2(31, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TeddyBearSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TeddyBearSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.4, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lh0bp"]
+_data = {
+"RESET": SubResource("Animation_7p7kh"),
+"cuddling": SubResource("Animation_17u5c"),
+"get_closer": SubResource("Animation_5qwpv"),
+"put_away": SubResource("Animation_jg508")
+}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ee75a"]
 playback_mode = 1
@@ -69,22 +238,37 @@ texture = ExtResource("1_jtq7h")
 shape = SubResource("RectangleShape2D_435t3")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
 position = Vector2(1.90735e-06, 1.90735e-06)
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_isire")
 
-[node name="Flashlight" type="Node2D" parent="."]
+[node name="TeddyBear" type="Node2D" parent="."]
+visible = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Flashlight"]
-position = Vector2(150, 0)
-texture = ExtResource("4_ijt5a")
-offset = Vector2(112, 0)
+[node name="TeddyBearSprite" type="Sprite2D" parent="TeddyBear"]
+visible = false
+position = Vector2(64, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("3_2fto3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TeddyBear"]
+libraries = {
+"": SubResource("AnimationLibrary_lh0bp")
+}
+
+[node name="Flashlight" type="Node2D" parent="."]
+visible = false
 
 [node name="TorchlightLight" type="Area2D" parent="Flashlight"]
 position = Vector2(64, 0)
 collision_layer = 4
 collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Flashlight/TorchlightLight"]
+visible = false
+position = Vector2(86, 0)
+texture = ExtResource("4_ijt5a")
+offset = Vector2(112, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flashlight/TorchlightLight"]
 polygon = PackedVector2Array(373, -153, 14, -8, 14, 8, 373, 151)
@@ -170,5 +354,6 @@ bus = &"Sounds"
 stream = ExtResource("5_rke8f")
 bus = &"Sounds"
 
+[connection signal="animation_finished" from="TeddyBear/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]

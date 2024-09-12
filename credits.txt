@@ -5,11 +5,8 @@ https://incolgames.itch.io/dungeon-platformer-tile-set-pixel-art
 Background
 https://free-game-assets.itch.io/free-horizontal-game-backgrounds
 
-Window
-https://kamisama887.itch.io/lorenz-fries-school-horror
-
 Custom character
-https://cainos.itch.io/customizable-pixel-character
+https://analogstudios.itch.io/playersprites
 
 Sounds
 benjaminnelan__door-locked https://freesound.org/people/BenjaminNelan/sounds/321087/
