@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=14 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="1_jtq7h"]
 [ext_resource type="Texture2D" uid="uid://c8yjw6nr30bjk" path="res://ressources/textures/light_cone.png" id="2_nk0df"]
+[ext_resource type="AudioStream" uid="uid://cqv0r1khh0d0i" path="res://ressources/audio/benjaminnelan__door-locked.wav" id="4_7fuph"]
+[ext_resource type="AudioStream" uid="uid://psg2b6v1ydao" path="res://ressources/audio/pagancow__dorm-door-opening.wav" id="5_rke8f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_435t3"]
 size = Vector2(50, 110)
@@ -29,6 +31,12 @@ size = Vector2(24, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_582br"]
 size = Vector2(46, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jr6eu"]
+size = Vector2(60, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c58j0"]
+size = Vector2(60, 35)
 
 [node name="Child" type="CharacterBody2D"]
 z_index = 10
@@ -98,6 +106,32 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindowDetector"]
 shape = SubResource("RectangleShape2D_582br")
 debug_color = Color(0.580941, 0.4581, 0.176535, 0.419608)
+
+[node name="DoorDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorDetector"]
+position = Vector2(0, 23.5)
+shape = SubResource("RectangleShape2D_jr6eu")
+debug_color = Color(0.244563, 0.548732, 0.370223, 0.419608)
+
+[node name="KeyDetector" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KeyDetector"]
+position = Vector2(0, 23.5)
+shape = SubResource("RectangleShape2D_c58j0")
+debug_color = Color(0.203184, 0.530685, 0.569075, 0.419608)
+
+[node name="DoorLocked" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7fuph")
+
+[node name="DoorOpened" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rke8f")
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]

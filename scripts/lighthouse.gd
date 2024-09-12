@@ -1,6 +1,5 @@
 extends Node
 
-@onready var game_ui: Control = $GameUI
 @onready var child: CharacterBody2D = %Child
 
 @onready var shadow_spawn_position: PathFollow2D = %ShadowSpawnPosition
@@ -11,17 +10,21 @@ var is_objective_complete := false
 var shadow_killed := 0
 
 @onready var window: StaticBody2D = $Level/Window
+@onready var key_label: Label = %KeyLabel
+
+@export var next_level: PackedScene = preload("res://scenes/lighthouse.tscn")
 
 var is_wave_on := false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
 
 func spawn_shadow() -> void:
 	var new_shadow := preload("res://scenes//shadow.tscn").instantiate()
@@ -31,7 +34,6 @@ func spawn_shadow() -> void:
 	shadow_counter += 1
 	add_child(new_shadow)
 	new_shadow.connect("shadow_defeated", delete_shadow)
-
 
 func _on_shadow_spawn_timer_timeout() -> void:
 	if is_wave_on:
@@ -47,6 +49,7 @@ func delete_shadow(shadow_node: CharacterBody2D) -> void:
 			is_wave_on = false
 		else:
 			is_objective_complete = true
+
 
 func _on_window_window_opened() -> void:
 	is_objective_complete = false
@@ -64,6 +67,7 @@ func _on_lighting_timer_timeout() -> void:
 				window.light_up(2)
 			else:
 				window.light_up(3)
+
 
 func _on_wave_timer_timeout() -> void:
 	is_wave_on = false
@@ -88,3 +92,13 @@ func _on_retry_pressed() -> void:
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func _on_exit_level_body_entered(body: Node2D) -> void:
+	if body.name == "Child":
+		get_tree().change_scene_to_packed(next_level)
+
+	pass # Replace with function body.
+
+func _on_child_key_updated(key_counter: int) -> void:
+	key_label.text = "Key : %s" % key_counter
+	pass # Replace with function body.
