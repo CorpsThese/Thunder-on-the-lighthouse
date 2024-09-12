@@ -66,6 +66,7 @@ func _physics_process(delta: float) -> void:
 
 	#Turn on/off the flashlight
 	if Input.is_action_just_pressed("flashlight"):
+		$Flashlight/FlashlightAudio.play()
 		flashlight.visible = !flashlight.visible
 		$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = !$Flashlight/TorchlightLight/CollisionPolygon2D.disabled
 	#Points the flashlight
