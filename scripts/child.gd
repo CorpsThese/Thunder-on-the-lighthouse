@@ -112,10 +112,7 @@ func _physics_process(delta: float) -> void:
 	#Calculate damage according to how many shadow are in range
 	var attacking_shadows : Array[Node2D] = hurt_box.get_overlapping_bodies()
 	if attacking_shadows.size() > 0:
-		health -= DAMAGE_RATE * attacking_shadows.size() * delta
-		courage_bar.value = health
-		if health <= 0.0:
-			courage_depleted.emit()
+		damage(DAMAGE_RATE * attacking_shadows.size() * delta)
 
 	var show_interactable_popup := false
 
@@ -161,6 +158,11 @@ func _physics_process(delta: float) -> void:
 	%BatteryBar.value = battery
 	%BatteryBar.visible = battery != MAX_BATTERY
 
+func damage(amount: float) -> void:
+	health -= amount
+	courage_bar.value = health
+	if health <= 0.0:
+		courage_depleted.emit()
 
 func toggle_flashlight() -> void:
 	emit_signal("flashlight_used")

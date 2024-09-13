@@ -96,6 +96,8 @@ func setup_thunder(level: int) -> void:
 # When timer is over play sound & set is_thunder ot true
 func _on_thunder_timer_timeout() -> void:
 	$ThunderSound.play()
+	%Child.damage(20)
+	print('damage!')
 	is_thunder = true
 
 # When sound is over set is_thunder to false
