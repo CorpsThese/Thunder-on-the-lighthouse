@@ -18,9 +18,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_lqdu0"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -207, -166, 0, 0, 0, 0, 982.657, -259.775, 0, 0, 0, 0, 2177, -161, 0, 0, 0, 0, 2197, 1260, 0, 0, 0, 0, 1830.1, 1270.07, 0, 0, 0, 0, 945.912, 1440, 0, 0, 0, 0, -202, 1250, 0, 0, 0, 0, -207, -166)
+"points": PackedVector2Array(0, 0, 0, 0, 1520, 0, 0, 0, 0, 0, 1520, 880, 0, 0, 0, 0, 0, 880, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1520, 0)
 }
-point_count = 8
+point_count = 5
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c36rp"]
 texture = ExtResource("3_x86x7")
@@ -778,21 +778,6 @@ sources/0 = SubResource("TileSetAtlasSource_c36rp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bxn1u"]
 
-[sub_resource type="Animation" id="Animation_ya3hn"]
-resource_name = "fadeout"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_lgu20"]
 length = 0.001
 tracks/0/type = "value"
@@ -806,6 +791,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ya3hn"]
+resource_name = "fadeout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3boht"]
@@ -919,31 +919,21 @@ wave_objective = 1
 
 [node name="Child" parent="." instance=ExtResource("2_4cjjo")]
 unique_name_in_owner = true
-position = Vector2(749, 824)
+position = Vector2(800, 880)
 
 [node name="ShadowSpawnArea" type="Path2D" parent="Child"]
-position = Vector2(-749, -824)
+position = Vector2(-720, -600)
 curve = SubResource("Curve2D_lqdu0")
 
 [node name="ShadowSpawnPosition" type="PathFollow2D" parent="Child/ShadowSpawnArea"]
 unique_name_in_owner = true
-position = Vector2(-207, -166)
-rotation = 0.00209731
+position = Vector2(1520, 0)
+rotation = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="Child"]
 limit_left = 0
 limit_right = 1920
 limit_bottom = 1080
-
-[node name="ShadowSpawnArea" type="Path2D" parent="Child/Camera2D"]
-position = Vector2(-224.372, -800)
-scale = Vector2(0.575499, 0.5)
-curve = SubResource("Curve2D_lqdu0")
-
-[node name="ShadowSpawnPosition" type="PathFollow2D" parent="Child/Camera2D/ShadowSpawnArea"]
-unique_name_in_owner = true
-position = Vector2(-207, -166)
-rotation = -0.0786626
 
 [node name="ShadowSpawnTimer" type="Timer" parent="."]
 
@@ -995,7 +985,6 @@ script = ExtResource("8_lm2wr")
 
 [node name="Tile0077" type="Sprite2D" parent="Level/FlashlightTip"]
 position = Vector2(46.4, 12)
-scale = Vector2(1, 1)
 texture = ExtResource("8_61tsg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/FlashlightTip"]

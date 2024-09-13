@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=49 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=53 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://c6x8vtuhef6ki" path="res://ressources/textures/child.png" id="2_28n7a"]
@@ -596,6 +595,5 @@ scale = Vector2(3.6875, 3.6875)
 texture = ExtResource("9_jtwpu")
 
 [connection signal="animation_finished" from="TeddyBear/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]

@@ -115,9 +115,9 @@ func _physics_process(delta: float) -> void:
 		courage_bar.value = health
 		if health <= 0.0:
 			courage_depleted.emit()
-	
+
 	var show_interactable_popup := false
-	
+
 	#Check if there is a window in range
 	#if interact opens it
 	if window_detector.has_overlapping_bodies():
@@ -145,9 +145,9 @@ func _physics_process(delta: float) -> void:
 				$DoorOpened.play()
 			else:
 				$DoorLocked.play()
-	
+
 	$InteractablePopup.visible = show_interactable_popup
-	
+
 	if flashlight.visible:
 		battery -= BATTERY_DEPLETE_RATE * delta
 		battery = max(0, battery)
@@ -156,7 +156,7 @@ func _physics_process(delta: float) -> void:
 	elif battery != MAX_BATTERY:
 		battery += BATTERY_CHARGE_RATE * delta
 		battery = min(MAX_BATTERY, battery)
-	
+
 	%BatteryBar.value = battery
 	%BatteryBar.visible = battery != MAX_BATTERY
 
