@@ -1,10 +1,15 @@
 extends CharacterBody2D
 
-@onready var child_sprite: Sprite2D = $ChildSprite
+@onready var child_sprite: AnimatedSprite2D = $ChildSprite
 @onready var flashlight: Node2D = $Flashlight
+@onready var is_holding_flashlight: bool = false
+@onready var teddy_bear: Node2D = $TeddyBear
+@onready var animation_player: AnimationPlayer = $TeddyBear/AnimationPlayer
 
-const SPEED = 300.0
+const SPEED = 250.0
 const JUMP_VELOCITY = -500.0
+var direction: float
+var direction_vertical: float
 
 var health := 100.0
 var DAMAGE_RATE := 5.0
@@ -30,7 +35,29 @@ const BATTERY_CHARGE_RATE := 20.0
 signal flashlight_used
 
 func _physics_process(delta: float) -> void:
+#region Animations
+	# Air animations
+	if is_climbing:
+		child_sprite.play("idle_climb")
+		if velocity.y != 0:
+			child_sprite.play("climb")
+	elif velocity.y > 0:
+			child_sprite.play("fall")
+	elif velocity.y < 0:
+		child_sprite.play("jump")
+	# Ground animations
+	elif (velocity.x > 1 || velocity.x < -1):
+		child_sprite.play("run")
+	else:
+		child_sprite.play("idle")
 
+	#Flip sprite depend where the face or faced last
+	if direction < 0.0:
+		child_sprite.flip_h = true
+	elif direction > 0.0:
+		child_sprite.flip_h = false
+
+#endregion
 	# Add the gravity, deactivated on climbing
 	if not is_on_floor() and not is_climbing:
 		velocity += get_gravity() * delta
@@ -48,7 +75,7 @@ func _physics_process(delta: float) -> void:
 	if ladder_detector.has_overlapping_bodies() && Input.is_action_pressed("move_up"):
 		is_climbing = true
 	if ladder_detector.has_overlapping_bodies() && is_climbing:
-		var direction_vertical := Input.get_axis("move_up", "move_down")
+		direction_vertical = Input.get_axis("move_up", "move_down")
 		if direction_vertical:
 			is_climbing = true
 			velocity.y = direction_vertical * SPEED
@@ -58,25 +85,28 @@ func _physics_process(delta: float) -> void:
 		is_climbing = false
 
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("move_left", "move_right")
+	direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	move_and_slide()
 
-	#Flip sprite depend where the face or faced last
-	if direction < 0.0:
-		child_sprite.flip_h = true
-	elif direction > 0.0:
-		child_sprite.flip_h = false
+	move_and_slide()
 
 	#Turn on/off the flashlight
 	if Input.is_action_just_pressed("flashlight"):
 		toggle_flashlight()
-	#Points the flashlight
+	# Points the flashlight
+	# Mouse support
 	flashlight.look_at(get_global_mouse_position())
+	# Controler support
+	#flashlight.look_at(Vector2(Input.get_joy_axis(1, JOY_AXIS_RIGHT_X), Input.get_joy_axis(1, JOY_AXIS_RIGHT_Y)))
 
+	if Input.is_action_just_pressed("cuddle"):
+		flashlight.visible = false
+		animation_player.play("get_closer")
+	if Input.is_action_just_released("cuddle"):
+		animation_player.play("put_away")
 
 	#Calculate damage according to how many shadow are in range
 	var attacking_shadows : Array[Node2D] = hurt_box.get_overlapping_bodies()
@@ -133,6 +163,7 @@ func _physics_process(delta: float) -> void:
 
 func toggle_flashlight() -> void:
 	emit_signal("flashlight_used")
+	animation_player.play("put_away")
 	$Flashlight/FlashlightAudio.play()
 	flashlight.visible = !flashlight.visible
 	$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = !$Flashlight/TorchlightLight/CollisionPolygon2D.disabled
@@ -140,10 +171,11 @@ func toggle_flashlight() -> void:
 #if shadow gets in range tells it so it stops getting closer
 func _on_hurt_box_body_entered(body: Node2D) -> void:
 	body.is_in_range = true
-	pass # Replace with function body.
-
 
 #if shadow gets out of range range tells it so it chases again
 func _on_hurt_box_body_exited(body: Node2D) -> void:
 	body.is_in_range = false
-	pass # Replace with function body.
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "get_closer":
+		animation_player.play("cuddling")
