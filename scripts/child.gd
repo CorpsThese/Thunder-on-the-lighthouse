@@ -38,9 +38,10 @@ func _physics_process(delta: float) -> void:
 #region Animations
 	# Air animations
 	if is_climbing:
-		child_sprite.play("idle_climb")
 		if velocity.y != 0:
 			child_sprite.play("climb")
+		else:
+			child_sprite.play("idle_climb")
 	elif velocity.y > 0:
 			child_sprite.play("fall")
 	elif velocity.y < 0:
