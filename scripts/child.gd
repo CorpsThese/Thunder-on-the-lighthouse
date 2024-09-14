@@ -59,11 +59,11 @@ func _physics_process(delta: float) -> void:
 	if direction < 0.0:
 		child_sprite.flip_h = true
 		teddy_bear.rotation_degrees = 180.0
-		teddy_bear.flip_v = true
+		$TeddyBear/TeddyBearSprite.flip_v = true
 	elif direction > 0.0:
 		child_sprite.flip_h = false
 		teddy_bear.rotation_degrees = 0.0
-		teddy_bear.flip_v = false
+		$TeddyBear/TeddyBearSprite.flip_v = false
 
 #endregion
 	# Add the gravity, deactivated on climbing

@@ -25,7 +25,7 @@ func open() -> void:
 	emit_signal("window_opened")
 	is_opened = true
 	$CollisionShape2D.disabled = true
-	permanent_light.scale = Vector2(1.75, 1.75)
+	permanent_light.scale = Vector2(1.60, 1.60)
 
 # Called by lighthouse.gd when a thunder is incoming
 # Light up the window according to the current level
