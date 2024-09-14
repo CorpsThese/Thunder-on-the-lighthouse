@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ckw0dgryqoo2d"]
+
+[ext_resource type="FontFile" uid="uid://byunudjlvpltp" path="res://ressources/pixel-script-font/PixelScriptRegular-0WnDG.otf" id="1_nsvk6"]
+
+[resource]
+default_font = ExtResource("1_nsvk6")
+Button/font_sizes/font_size = 35

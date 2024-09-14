@@ -1,7 +1,8 @@
-[gd_scene load_steps=29 format=4 uid="uid://cjo607hfvr2dn"]
+[gd_scene load_steps=31 format=4 uid="uid://cjo607hfvr2dn"]
 
 [ext_resource type="Script" path="res://scripts/lighthouse.gd" id="1_j7rth"]
 [ext_resource type="PackedScene" uid="uid://cmqg83tvc3wae" path="res://scenes/child.tscn" id="2_4cjjo"]
+[ext_resource type="PackedScene" uid="uid://btwbla5oc0td0" path="res://scenes/lighthouse.tscn" id="2_weekl"]
 [ext_resource type="Texture2D" uid="uid://dvw23hlqfcoew" path="res://ressources/textures/Dungeon Tile Set.png" id="3_x86x7"]
 [ext_resource type="Texture2D" uid="uid://ds6h5sg8cvf2x" path="res://ressources/textures/lighthouse_tilesite.png" id="4_p6ti1"]
 [ext_resource type="PackedScene" uid="uid://c0hh0yrq3thel" path="res://scenes/window.tscn" id="5_c5yqh"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dwvrpe4k8x7cg" path="res://scenes/key.tscn" id="7_lh78b"]
 [ext_resource type="Texture2D" uid="uid://bumwesb1lkm" path="res://ressources/textures/tile_0077.png" id="8_61tsg"]
 [ext_resource type="Script" path="res://scenes/flashlight_tip.gd" id="8_lm2wr"]
+[ext_resource type="Theme" uid="uid://ckw0dgryqoo2d" path="res://ressources/ui_theme.tres" id="9_bu06t"]
 [ext_resource type="AudioStream" uid="uid://7t4s4lwp0qyi" path="res://ressources/audio/onesoundtorulethemall__thunder15.wav" id="9_yuavh"]
 [ext_resource type="AudioStream" uid="uid://dfile7s7lem0k" path="res://ressources/audio/pnmcarrierailfan__thunder-claps-single-clap-02.wav" id="10_36yj2"]
 [ext_resource type="AudioStream" uid="uid://b5udcelwcwbhs" path="res://ressources/audio/bastipictures__rain-against-window.mp3" id="11_tjr0p"]
@@ -916,6 +918,7 @@ _data = {
 script = ExtResource("1_j7rth")
 max_shadow = 1
 wave_objective = 1
+next_level = ExtResource("2_weekl")
 
 [node name="Child" parent="." instance=ExtResource("2_4cjjo")]
 unique_name_in_owner = true
@@ -980,6 +983,7 @@ offset_top = 162.2
 offset_right = 256.8
 offset_bottom = 185.2
 scale = Vector2(0.392, 0.392)
+theme = ExtResource("9_bu06t")
 text = "Click     for flashlight"
 script = ExtResource("8_lm2wr")
 
