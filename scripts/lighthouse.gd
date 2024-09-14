@@ -48,6 +48,9 @@ func delete_shadow(shadow_node: CharacterBody2D) -> void:
 	shadow_counter -= 1
 	shadow_node.queue_free()
 	shadow_killed += 1
+	
+	%Child.damage(-10)
+	
 	if shadow_killed == wave_objective:
 		is_objective_complete = true
 	if is_objective_complete:

@@ -535,6 +535,7 @@ disabled = true
 [node name="PointLight2D" type="PointLight2D" parent="Flashlight/TorchlightLight"]
 position = Vector2(180, 2.38419e-07)
 scale = Vector2(0.898045, 0.898045)
+shadow_color = Color(1, 1, 1, 0.654902)
 texture = ExtResource("4_ijt5a")
 
 [node name="TorchlightSprite" type="Sprite2D" parent="Flashlight"]
