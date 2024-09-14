@@ -44,6 +44,7 @@ func _on_shadow_spawn_timer_timeout() -> void:
 
 func delete_shadow(shadow_node: CharacterBody2D) -> void:
 	shadow_node.queue_free()
+	$ShadowDefeated.play()
 	%Child.damage(-10)
 	shadow_counter -= 1
 	if is_wave_on:

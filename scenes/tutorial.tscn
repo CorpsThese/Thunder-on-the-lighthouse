@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bumwesb1lkm" path="res://ressources/textures/tile_0077.png" id="8_61tsg"]
 [ext_resource type="Theme" uid="uid://ckw0dgryqoo2d" path="res://ressources/ui_theme.tres" id="9_bu06t"]
 [ext_resource type="AudioStream" uid="uid://7t4s4lwp0qyi" path="res://ressources/audio/onesoundtorulethemall__thunder15.wav" id="9_yuavh"]
-[ext_resource type="AudioStream" uid="uid://dfile7s7lem0k" path="res://ressources/audio/pnmcarrierailfan__thunder-claps-single-clap-02.wav" id="10_36yj2"]
 [ext_resource type="Texture2D" uid="uid://c56qeyj2iedcy" path="res://ressources/textures/left_joystick.png" id="10_p8rth"]
 [ext_resource type="Texture2D" uid="uid://djtw7vdnpwkj7" path="res://ressources/textures/WASD.png" id="11_augi5"]
 [ext_resource type="AudioStream" uid="uid://b5udcelwcwbhs" path="res://ressources/audio/bastipictures__rain-against-window.mp3" id="11_tjr0p"]
@@ -26,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://6n3np74xk3nb" path="res://ressources/textures/x_button.png" id="14_ljb1o"]
 [ext_resource type="Texture2D" uid="uid://kbfiglvplb7j" path="res://ressources/textures/right_joystick.png" id="17_npoko"]
 [ext_resource type="Texture2D" uid="uid://c34taqw1wajvx" path="res://ressources/textures/mouse_move.png" id="18_y2vbh"]
+[ext_resource type="AudioStream" uid="uid://c2m1ibdhms3w2" path="res://ressources/audio/Retro Swooosh 16.wav" id="27_h0u8r"]
 
 [sub_resource type="Curve2D" id="Curve2D_lqdu0"]
 _data = {
@@ -880,11 +880,10 @@ _data = {
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_br5h4"]
 playback_mode = 1
-random_pitch = 3.0
+random_pitch = 2.0
 random_volume_offset_db = 4.0
-streams_count = 2
+streams_count = 1
 stream_0/stream = ExtResource("9_yuavh")
-stream_1/stream = ExtResource("10_36yj2")
 
 [sub_resource type="Animation" id="Animation_ouegg"]
 length = 0.001
@@ -1111,7 +1110,6 @@ text = "Press     /     for flashlight"
 
 [node name="Tile0078" type="Sprite2D" parent="Level/FlashlightTip"]
 position = Vector2(58.1633, 14.7959)
-scale = Vector2(1, 1)
 texture = ExtResource("14_ljb1o")
 
 [node name="Tile0077" type="Sprite2D" parent="Level/FlashlightTip"]
@@ -1134,7 +1132,6 @@ text = "Aim      /"
 
 [node name="Tile0078" type="Sprite2D" parent="Level/FlashlightTip2"]
 position = Vector2(43.8776, 14.2857)
-scale = Vector2(1, 1)
 texture = ExtResource("17_npoko")
 
 [node name="Tile0077" type="Sprite2D" parent="Level/FlashlightTip2"]
@@ -1397,6 +1394,11 @@ bus = &"Music"
 libraries = {
 "": SubResource("AnimationLibrary_vh360")
 }
+
+[node name="ShadowDefeated" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_h0u8r")
+volume_db = 6.0
+bus = &"Sounds"
 
 [connection signal="courage_depleted" from="Child" to="." method="_on_child_courage_depleted"]
 [connection signal="flashlight_used" from="Child" to="Level/FlashlightTip" method="_on_child_flashlight_used"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=58 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://c6x8vtuhef6ki" path="res://ressources/textures/child.png" id="2_28n7a"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c4e1ylhycps2l" path="res://ressources/textures/tile_0048.png" id="10_53gnp"]
 [ext_resource type="AudioStream" uid="uid://dol7x1c71oya6" path="res://ressources/audio/Retro FootStep 03.wav" id="14_rg2bj"]
 [ext_resource type="AudioStream" uid="uid://b0tifqce2nh6k" path="res://ressources/audio/Retro PickUp Coin 04.wav" id="15_o4nwl"]
+[ext_resource type="AudioStream" uid="uid://dqg1qhlierio4" path="res://ressources/audio/Retro FootStep Grass 01.wav" id="16_t2dnf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qcwk0"]
 atlas = ExtResource("2_28n7a")
@@ -671,10 +672,18 @@ texture = ExtResource("9_jtwpu")
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_l0rn1")
+volume_db = -8.0
 bus = &"Sounds"
 
 [node name="PickupKey" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_o4nwl")
+volume_db = -4.0
+bus = &"Sounds"
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_t2dnf")
+volume_db = -5.0
+pitch_scale = 2.0
 bus = &"Sounds"
 
 [connection signal="animation_finished" from="TeddyBear/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -186,6 +186,7 @@ func update_key_counter(new_key_counter: int) -> void:
 func jump() -> void:
 	is_climbing = false
 	velocity.y = JUMP_VELOCITY
+	$Jump.play()
 
 func thunder_damage(amount: float) -> void:
 	if not is_cuddling:
