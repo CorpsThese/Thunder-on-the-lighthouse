@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name WindowInGame
 
 signal window_opened
 var is_opened: bool = false
@@ -25,7 +26,7 @@ func open() -> void:
 	emit_signal("window_opened")
 	is_opened = true
 	$CollisionShape2D.disabled = true
-	permanent_light.scale = Vector2(1.55, 1.55)
+	permanent_light.scale = Vector2(1.75, 1.75)
 
 # Called by lighthouse.gd when a thunder is incoming
 # Light up the window according to the current level
@@ -34,10 +35,13 @@ func light_up(level: int) -> void:
 		match level:
 			1:
 				$LightingSprite.texture = load("res://ressources/textures/lighting_level_1.png")
+				$LightingSprite/PointLight2D.scale = Vector2(2.5, 2.5)
 			2:
 				$LightingSprite.texture = load("res://ressources/textures/lighting_level_2.png")
+				$LightingSprite/PointLight2D.scale = Vector2(3.25, 3.25)
 			3:
 				$LightingSprite.texture = load("res://ressources/textures/lighting_level_3.png")
+				$LightingSprite/PointLight2D.scale = Vector2(4, 4)
 		$LightingSprite.show()
 		repeat = 0
 		timer.wait_time = 0.4

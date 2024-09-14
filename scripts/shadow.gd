@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Shadow
 
-const SPEED = 100.0
+const SPEED = 115.0
 var player : CharacterBody2D
 var is_in_range := false
 
@@ -19,6 +19,12 @@ func _physics_process(delta: float) -> void:
 		var direction := global_position.direction_to(player.global_position)
 		velocity = direction * SPEED
 		move_and_slide()
+		
+	#Flip sprite depend where facing or faced last
+	if velocity.x < 0.0:
+		animated_sprite_2d.flip_h = false
+	elif velocity.x > 0.0:
+		animated_sprite_2d.flip_h = true
 
 	# Manage damage if in the area of the flashlight
 	var light : Array[Area2D] = hurt_box.get_overlapping_areas()

@@ -9,8 +9,8 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $TeddyBear/AnimationPlayer
 var is_cuddling:bool = false
 
-const SPEED = 250.0
-const JUMP_VELOCITY = -500.0
+var SPEED := 200.0
+var JUMP_VELOCITY := -450.0
 var direction: float
 var direction_vertical: float
 
@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		child_sprite.play("idle")
 
-	#Flip sprite depend where the face or faced last
+	#Flip sprite depend where facing or faced last
 	if direction < 0.0:
 		child_sprite.flip_h = true
 		teddy_bear.rotation_degrees = 180.0
@@ -74,8 +74,7 @@ func _physics_process(delta: float) -> void:
 		is_climbing = false
 	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		is_climbing = false
-		velocity.y = JUMP_VELOCITY
+		jump()
 	# Get down platform
 	if Input.is_action_just_pressed("move_down"):
 		position.y += 1
@@ -111,12 +110,18 @@ func _physics_process(delta: float) -> void:
 	#flashlight.look_at(Vector2(Input.get_joy_axis(1, JOY_AXIS_RIGHT_X), Input.get_joy_axis(1, JOY_AXIS_RIGHT_Y)))
 
 	if Input.is_action_just_pressed("cuddle"):
+		$Flashlight/FlashlightAudio.play()
 		flashlight.visible = false
+		$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = true
 		animation_player.play("get_closer")
 		is_cuddling = true
+		SPEED -= 100
+		JUMP_VELOCITY += 150
 	if Input.is_action_just_released("cuddle"):
 		animation_player.play("put_away")
 		is_cuddling = false
+		SPEED += 100
+		JUMP_VELOCITY -= 150
 
 	#Calculate damage according to how many shadow are in range
 	var attacking_shadows : Array[Node2D] = hurt_box.get_overlapping_bodies()
@@ -175,6 +180,10 @@ func update_key_counter(new_key_counter: int) -> void:
 	if key_counter >= 3:
 		print('More than 3 keys are not supported by UI!')
 
+func jump() -> void:
+	is_climbing = false
+	velocity.y = JUMP_VELOCITY
+
 func thunder_damage(amount: float) -> void:
 	if not is_cuddling:
 		damage(amount)
@@ -188,7 +197,6 @@ func damage(amount: float) -> void:
 
 func toggle_flashlight() -> void:
 	emit_signal("flashlight_used")
-	animation_player.play("put_away")
 	$Flashlight/FlashlightAudio.play()
 	flashlight.visible = !flashlight.visible
 	$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = !$Flashlight/TorchlightLight/CollisionPolygon2D.disabled

@@ -4,13 +4,12 @@ extends Node
 
 @onready var shadow_spawn_position: PathFollow2D = %ShadowSpawnPosition
 var shadow_counter := 0
-@export var max_shadow := 5
+@export var max_shadow := 1
 @export var wave_objective := 5
 var is_wave_on := false
-var is_objective_complete := false
 var shadow_killed := 0
 
-@onready var window: StaticBody2D = $Level/Window
+@onready var windows: Array[Node]
 var is_thunder := false
 @onready var key_label: Label = %KeyLabel
 
@@ -21,13 +20,13 @@ var is_thunder := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	windows = $Level/Windows.get_children()
+	$LightingTimer.start(randfn(10, 2))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_thunder:
-		%Child.thunder_damage(20*delta)
-	pass
+		%Child.thunder_damage(15*delta)
 
 
 func spawn_shadow() -> void:
@@ -40,33 +39,31 @@ func spawn_shadow() -> void:
 	new_shadow.connect("shadow_defeated", delete_shadow)
 
 func _on_shadow_spawn_timer_timeout() -> void:
-	if not is_objective_complete:
-		if shadow_counter < max_shadow:
-			spawn_shadow()
+	if shadow_counter < max_shadow:
+		spawn_shadow()
 
 func delete_shadow(shadow_node: CharacterBody2D) -> void:
-	shadow_counter -= 1
 	shadow_node.queue_free()
-	shadow_killed += 1
-	
 	%Child.damage(-10)
-	
+	shadow_counter -= 1
+	if is_wave_on:
+		shadow_killed += 1
 	if shadow_killed == wave_objective:
-		is_objective_complete = true
-	if is_objective_complete:
 		is_wave_on = false
-		$ShadowSpawnTimer.stop()
+		$ShadowSpawnTimer.set_wait_time(4)
+		max_shadow -= 1
+		wave_objective += 1
 		music_fader.play("fade_into_calm")
-
-
-
-func _on_window_window_opened() -> void:
+	
+func start_wave() -> void:
 	shadow_killed = 0
-	is_objective_complete = false
+	max_shadow += 3
 	is_wave_on = true
-	$ShadowSpawnTimer.start()
+	$ShadowSpawnTimer.start(1)
 	music_fader.play("fade_into_fight")
 
+func _on_window_window_opened() -> void:
+	start_wave()
 
 # On timer out there is a chance to have lighting
 # If so, there is 3 possible lighting level
@@ -78,14 +75,20 @@ func _on_lighting_timer_timeout() -> void:
 		if proba > 0.33:
 			proba = randf()
 			if proba < 0.5:
-				window.light_up(1)
-				setup_thunder(1)
+				for window in windows:
+					window.light_up(1)
+					setup_thunder(1)
 			elif proba < 0.8:
-				window.light_up(2)
-				setup_thunder(2)
+				for window in windows:
+					window.light_up(2)
+					setup_thunder(2)
 			else:
-				window.light_up(3)
-				setup_thunder(3)
+				for window in windows:
+					window.light_up(3)
+					setup_thunder(3)
+		else:
+			$LightingTimer.start(randfn(10, 2))
+			
 
 # Init thunder timer according to level
 func setup_thunder(level: int) -> void:
@@ -106,32 +109,11 @@ func _on_thunder_timer_timeout() -> void:
 # When sound is over set is_thunder to false
 func _on_thunder_sound_finished() -> void:
 	is_thunder = false
-	$LightingTimer.start(randf_range(6, 12))
+	$LightingTimer.start(randfn(10, 2))
 
 func _on_child_courage_depleted() -> void:
-	%GameOver.show()
+	$GameUI/GameOverUI.show()
 	get_tree().paused = true
-
-# Used to pause
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
-		get_tree().paused = true
-		%Pause.show()
-
-func _on_continue_pressed() -> void:
-	get_tree().paused = false
-	%Pause.hide()
-
-func _on_retry_pressed() -> void:
-	get_tree().paused = false
-	get_tree().reload_current_scene()
-
-func _on_main_menu_pressed() -> void:
-	get_tree().paused = false
-	
-	# TODO: proper main menu
-	%Pause.hide()
-	#get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 # Supposedly only leaving the tutoral => lighhouse the lighthouse => end
 # next_level is an export value you can change in editor
