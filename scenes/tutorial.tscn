@@ -1,10 +1,10 @@
-[gd_scene load_steps=31 format=4 uid="uid://cjo607hfvr2dn"]
+[gd_scene load_steps=33 format=4 uid="uid://cjo607hfvr2dn"]
 
 [ext_resource type="Script" path="res://scripts/lighthouse.gd" id="1_j7rth"]
 [ext_resource type="PackedScene" uid="uid://cmqg83tvc3wae" path="res://scenes/child.tscn" id="2_4cjjo"]
 [ext_resource type="PackedScene" uid="uid://btwbla5oc0td0" path="res://scenes/lighthouse.tscn" id="2_weekl"]
 [ext_resource type="Texture2D" uid="uid://dvw23hlqfcoew" path="res://ressources/textures/Dungeon Tile Set.png" id="3_x86x7"]
-[ext_resource type="Texture2D" uid="uid://ds6h5sg8cvf2x" path="res://ressources/textures/lighthouse_tilesite.png" id="4_p6ti1"]
+[ext_resource type="Texture2D" uid="uid://ds6h5sg8cvf2x" path="res://ressources/textures/lighthouse_tileset.png" id="4_p6ti1"]
 [ext_resource type="PackedScene" uid="uid://c0hh0yrq3thel" path="res://scenes/window.tscn" id="5_c5yqh"]
 [ext_resource type="PackedScene" uid="uid://b75oemjfxvwkj" path="res://scenes/volume_slider.tscn" id="6_n0ra0"]
 [ext_resource type="PackedScene" uid="uid://0d2mdm6qwo1t" path="res://scenes/door.tscn" id="6_v7ot6"]
@@ -15,7 +15,9 @@
 [ext_resource type="AudioStream" uid="uid://7t4s4lwp0qyi" path="res://ressources/audio/onesoundtorulethemall__thunder15.wav" id="9_yuavh"]
 [ext_resource type="AudioStream" uid="uid://dfile7s7lem0k" path="res://ressources/audio/pnmcarrierailfan__thunder-claps-single-clap-02.wav" id="10_36yj2"]
 [ext_resource type="AudioStream" uid="uid://b5udcelwcwbhs" path="res://ressources/audio/bastipictures__rain-against-window.mp3" id="11_tjr0p"]
+[ext_resource type="Script" path="res://scripts/game_over_ui.gd" id="12_43mnc"]
 [ext_resource type="AudioStream" uid="uid://b45v0e67iype4" path="res://ressources/audio/Solitude-in-the-storm-calms.mp3" id="12_hdwdl"]
+[ext_resource type="Script" path="res://scripts/pause_control.gd" id="12_prqyn"]
 [ext_resource type="AudioStream" uid="uid://isab3moxwcpa" path="res://ressources/audio/Solitude-in-the-storm-fight.mp3" id="13_akxj2"]
 
 [sub_resource type="Curve2D" id="Curve2D_lqdu0"]
@@ -998,15 +1000,16 @@ libraries = {
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="GameUI"]
+[node name="PlayerUI" type="Control" parent="GameUI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_bu06t")
 
-[node name="KeyLabel" type="Label" parent="GameUI/Control"]
+[node name="KeyLabel" type="Label" parent="GameUI/PlayerUI"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 50.0
@@ -1014,12 +1017,20 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 50
 text = "Key : 0"
 
-[node name="GameOver" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-process_mode = 2
+[node name="GameOverUI" type="Control" parent="GameUI"]
+process_mode = 3
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_bu06t")
+script = ExtResource("12_43mnc")
 
-[node name="ColorRect" type="ColorRect" parent="GameOver"]
+[node name="ColorRect" type="ColorRect" parent="GameUI/GameOverUI"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1027,7 +1038,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.392157)
 
-[node name="Label" type="Label" parent="GameOver/ColorRect"]
+[node name="Label" type="Label" parent="GameUI/GameOverUI/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1043,7 +1054,8 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 60
 text = "You got scared and peed your pants!"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOver"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUI/GameOverUI"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1052,26 +1064,35 @@ anchor_bottom = 0.5
 offset_left = -154.0
 offset_top = -90.0
 offset_right = 154.0
-offset_bottom = 90.0
+offset_bottom = 101.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_bu06t")
 
-[node name="Retry" type="Button" parent="GameOver/VBoxContainer"]
+[node name="Retry" type="Button" parent="GameUI/GameOverUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Retry"
 
-[node name="Main menu" type="Button" parent="GameOver/VBoxContainer"]
+[node name="Exit" type="Button" parent="GameUI/GameOverUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Main menu"
+text = "Exit"
 
-[node name="Pause" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-process_mode = 2
+[node name="PauseUI" type="Control" parent="GameUI"]
+process_mode = 3
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_bu06t")
+script = ExtResource("12_prqyn")
 
-[node name="ColorRect" type="ColorRect" parent="Pause"]
+[node name="ColorRect" type="ColorRect" parent="GameUI/PauseUI"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1079,7 +1100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.392157)
 
-[node name="Label" type="Label" parent="Pause/ColorRect"]
+[node name="Label" type="Label" parent="GameUI/PauseUI/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1096,7 +1117,7 @@ theme_override_font_sizes/font_size = 60
 text = "Pause"
 horizontal_alignment = 1
 
-[node name="Volume manager" type="PanelContainer" parent="Pause/ColorRect"]
+[node name="Volume manager" type="PanelContainer" parent="GameUI/PauseUI/ColorRect"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1110,45 +1131,45 @@ offset_bottom = 160.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Pause/ColorRect/Volume manager"]
+[node name="MarginContainer" type="MarginContainer" parent="GameUI/PauseUI/ColorRect/Volume manager"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause/ColorRect/Volume manager/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUI/PauseUI/ColorRect/Volume manager/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Master" type="Label" parent="Pause/ColorRect/Volume manager/MarginContainer/VBoxContainer"]
+[node name="Master" type="Label" parent="GameUI/PauseUI/ColorRect/Volume manager/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Master"
 
-[node name="volume_slider" parent="Pause/ColorRect/Volume manager/MarginContainer/VBoxContainer" instance=ExtResource("6_n0ra0")]
+[node name="volume_slider" parent="GameUI/PauseUI/ColorRect/Volume manager/MarginContainer/VBoxContainer" instance=ExtResource("6_n0ra0")]
 layout_mode = 2
 bus_name = "Master"
 
-[node name="Music" type="Label" parent="Pause/ColorRect/Volume manager/MarginContainer/VBoxContainer"]
+[node name="Music" type="Label" parent="GameUI/PauseUI/ColorRect/Volume manager/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Music"
 
-[node name="volume_slider3" parent="Pause/ColorRect/Volume manager/MarginContainer/VBoxContainer" instance=ExtResource("6_n0ra0")]
+[node name="volume_slider3" parent="GameUI/PauseUI/ColorRect/Volume manager/MarginContainer/VBoxContainer" instance=ExtResource("6_n0ra0")]
 layout_mode = 2
 bus_name = "Music"
 
-[node name="Sounds" type="Label" parent="Pause/ColorRect/Volume manager/MarginContainer/VBoxContainer"]
+[node name="Sounds" type="Label" parent="GameUI/PauseUI/ColorRect/Volume manager/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Sounds"
 
-[node name="volume_slider2" parent="Pause/ColorRect/Volume manager/MarginContainer/VBoxContainer" instance=ExtResource("6_n0ra0")]
+[node name="volume_slider2" parent="GameUI/PauseUI/ColorRect/Volume manager/MarginContainer/VBoxContainer" instance=ExtResource("6_n0ra0")]
 layout_mode = 2
 bus_name = "Sounds"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause/ColorRect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUI/PauseUI/ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1162,15 +1183,20 @@ offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Continue" type="Button" parent="Pause/ColorRect/VBoxContainer"]
+[node name="Continue" type="Button" parent="GameUI/PauseUI/ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Continue"
 
-[node name="Main menu" type="Button" parent="Pause/ColorRect/VBoxContainer"]
+[node name="Retry" type="Button" parent="GameUI/PauseUI/ColorRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Main menu"
+text = "Retry"
+
+[node name="Exit" type="Button" parent="GameUI/PauseUI/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exit"
 
 [node name="LightingTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -1214,10 +1240,11 @@ libraries = {
 [connection signal="timeout" from="ShadowSpawnTimer" to="." method="_on_shadow_spawn_timer_timeout"]
 [connection signal="window_opened" from="Level/Window" to="." method="_on_window_window_opened"]
 [connection signal="body_entered" from="Level/ExitLevel" to="." method="_on_exit_level_body_entered"]
-[connection signal="pressed" from="GameOver/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="GameOver/VBoxContainer/Main menu" to="." method="_on_main_menu_pressed"]
-[connection signal="pressed" from="Pause/ColorRect/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="Pause/ColorRect/VBoxContainer/Main menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="GameUI/GameOverUI/VBoxContainer/Retry" to="GameUI/GameOverUI" method="_on_retry_pressed"]
+[connection signal="pressed" from="GameUI/GameOverUI/VBoxContainer/Exit" to="GameUI/GameOverUI" method="_on_exit_pressed"]
+[connection signal="pressed" from="GameUI/PauseUI/ColorRect/VBoxContainer/Continue" to="GameUI/PauseUI" method="_on_continue_pressed"]
+[connection signal="pressed" from="GameUI/PauseUI/ColorRect/VBoxContainer/Retry" to="GameUI/PauseUI" method="_on_retry_pressed"]
+[connection signal="pressed" from="GameUI/PauseUI/ColorRect/VBoxContainer/Exit" to="GameUI/PauseUI" method="_on_exit_pressed"]
 [connection signal="timeout" from="LightingTimer" to="." method="_on_lighting_timer_timeout"]
 [connection signal="timeout" from="ThunderTimer" to="." method="_on_thunder_timer_timeout"]
 [connection signal="finished" from="ThunderSound" to="." method="_on_thunder_sound_finished"]

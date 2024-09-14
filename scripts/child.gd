@@ -10,7 +10,7 @@ extends CharacterBody2D
 var is_cuddling:bool = false
 
 const SPEED = 250.0
-const JUMP_VELOCITY = -500.0
+const JUMP_VELOCITY = -450.0
 var direction: float
 var direction_vertical: float
 
@@ -74,8 +74,7 @@ func _physics_process(delta: float) -> void:
 		is_climbing = false
 	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		is_climbing = false
-		velocity.y = JUMP_VELOCITY
+		jump()
 	# Get down platform
 	if Input.is_action_just_pressed("move_down"):
 		position.y += 1
@@ -167,6 +166,10 @@ func _physics_process(delta: float) -> void:
 	%BatteryBar.value = battery
 	%BatteryBar.visible = battery != MAX_BATTERY
 
+
+func jump() -> void:
+	is_climbing = false
+	velocity.y = JUMP_VELOCITY
 
 func thunder_damage(amount: float) -> void:
 	if not is_cuddling:

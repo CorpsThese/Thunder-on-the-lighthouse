@@ -106,26 +106,8 @@ func _on_thunder_sound_finished() -> void:
 	$LightingTimer.start(randf_range(6, 12))
 
 func _on_child_courage_depleted() -> void:
-	%GameOver.show()
+	$GameUI/GameOverUI.show()
 	get_tree().paused = true
-
-# Used to pause
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
-		get_tree().paused = true
-		%Pause.show()
-
-func _on_continue_pressed() -> void:
-	get_tree().paused = false
-	%Pause.hide()
-
-func _on_retry_pressed() -> void:
-	get_tree().paused = false
-	get_tree().reload_current_scene()
-
-func _on_main_menu_pressed() -> void:
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 # Supposedly only leaving the tutoral => lighhouse the lighthouse => end
 # next_level is an export value you can change in editor
