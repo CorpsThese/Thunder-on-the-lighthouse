@@ -1,0 +1,135 @@
+[gd_scene load_steps=5 format=3 uid="uid://b75pyl2lng2xs"]
+
+[ext_resource type="Script" path="res://scripts/end_screen.gd" id="1_537bo"]
+[ext_resource type="Theme" uid="uid://ckw0dgryqoo2d" path="res://ressources/ui_theme.tres" id="1_fg1kc"]
+[ext_resource type="PackedScene" uid="uid://b75oemjfxvwkj" path="res://scenes/volume_slider.tscn" id="2_7p8ro"]
+[ext_resource type="Texture2D" uid="uid://dp0bhyslqy8c1" path="res://ressources/textures/end_background.png" id="3_tevsh"]
+
+[node name="EndScreen" type="CanvasLayer"]
+script = ExtResource("1_537bo")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fg1kc")
+
+[node name="CreditsPanel" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 1
+offset_left = 29.0
+offset_top = 21.0
+offset_right = 732.0
+offset_bottom = 411.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/CreditsPanel"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Control/CreditsPanel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Lorem ipsum"
+autowrap_mode = 2
+
+[node name="Background" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_tevsh")
+
+[node name="Logo" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 58.0
+offset_right = 1119.0
+offset_bottom = 217.0
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 434.0
+offset_right = 749.0
+offset_bottom = 706.0
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Start" type="Button" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play again"
+
+[node name="Credits" type="Button" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Credits"
+
+[node name="Exit" type="Button" parent="Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exit"
+
+[node name="Volume manager" type="PanelContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/HBoxContainer/Volume manager"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer/Volume manager/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Master" type="Label" parent="Control/HBoxContainer/Volume manager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Master"
+
+[node name="volume_slider" parent="Control/HBoxContainer/Volume manager/MarginContainer/VBoxContainer" instance=ExtResource("2_7p8ro")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Music" type="Label" parent="Control/HBoxContainer/Volume manager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Music"
+
+[node name="volume_slider3" parent="Control/HBoxContainer/Volume manager/MarginContainer/VBoxContainer" instance=ExtResource("2_7p8ro")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="Sounds" type="Label" parent="Control/HBoxContainer/Volume manager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Sounds"
+
+[node name="volume_slider2" parent="Control/HBoxContainer/Volume manager/MarginContainer/VBoxContainer" instance=ExtResource("2_7p8ro")]
+layout_mode = 2
+bus_name = "Sounds"
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="Control/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
