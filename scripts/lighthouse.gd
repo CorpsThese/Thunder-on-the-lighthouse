@@ -21,6 +21,7 @@ var is_thunder := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$LightingTimer.start(randfn(10, 2))
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -72,7 +73,7 @@ func _on_lighting_timer_timeout() -> void:
 	if not is_wave_on:
 		$LightingTimer.stop()
 		var proba := randf()
-		if proba > 0.33:
+		if proba > 0.0:
 			proba = randf()
 			if proba < 0.5:
 				window.light_up(1)
@@ -84,7 +85,7 @@ func _on_lighting_timer_timeout() -> void:
 				window.light_up(3)
 				setup_thunder(3)
 		else:
-			$LightingTimer.start(randf_range(6, 12))
+			$LightingTimer.start(randfn(10, 2))
 			
 
 # Init thunder timer according to level
@@ -106,8 +107,7 @@ func _on_thunder_timer_timeout() -> void:
 # When sound is over set is_thunder to false
 func _on_thunder_sound_finished() -> void:
 	is_thunder = false
-	#var rn
-	$LightingTimer.start(randf_range(6, 12))
+	$LightingTimer.start(randfn(10, 2))
 
 func _on_child_courage_depleted() -> void:
 	$GameUI/GameOverUI.show()
