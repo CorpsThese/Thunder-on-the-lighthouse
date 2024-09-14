@@ -4,13 +4,12 @@ extends Node
 
 @onready var shadow_spawn_position: PathFollow2D = %ShadowSpawnPosition
 var shadow_counter := 0
-@export var max_shadow := 5
+@export var max_shadow := 1
 @export var wave_objective := 5
 var is_wave_on := false
-var is_objective_complete := false
 var shadow_killed := 0
 
-@onready var window: StaticBody2D = $Level/Window
+@onready var windows: Array[Node]
 var is_thunder := false
 @onready var key_label: Label = %KeyLabel
 
@@ -21,14 +20,13 @@ var is_thunder := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	windows = $Level/Windows.get_children()
 	$LightingTimer.start(randfn(10, 2))
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_thunder:
-		%Child.thunder_damage(20*delta)
-	pass
+		%Child.thunder_damage(15*delta)
 
 
 func spawn_shadow() -> void:
@@ -41,28 +39,29 @@ func spawn_shadow() -> void:
 	new_shadow.connect("shadow_defeated", delete_shadow)
 
 func _on_shadow_spawn_timer_timeout() -> void:
-	if not is_objective_complete:
-		if shadow_counter < max_shadow:
-			spawn_shadow()
+	if shadow_counter < max_shadow:
+		spawn_shadow()
 
 func delete_shadow(shadow_node: CharacterBody2D) -> void:
-	shadow_counter -= 1
 	shadow_node.queue_free()
-	shadow_killed += 1
+	shadow_counter -= 1
+	if is_wave_on:
+		shadow_killed += 1
 	if shadow_killed == wave_objective:
-		is_objective_complete = true
-	if is_objective_complete:
 		is_wave_on = false
-		$ShadowSpawnTimer.stop()
+		$ShadowSpawnTimer.set_wait_time(4)
+		max_shadow -= 3
+		wave_objective += 1
 		music_fader.play("fade_into_calm")
 
-
-
 func _on_window_window_opened() -> void:
+	start_wave()
+	
+func start_wave() -> void:
 	shadow_killed = 0
-	is_objective_complete = false
+	max_shadow += 4
 	is_wave_on = true
-	$ShadowSpawnTimer.start()
+	$ShadowSpawnTimer.start(1)
 	music_fader.play("fade_into_fight")
 
 
@@ -73,17 +72,20 @@ func _on_lighting_timer_timeout() -> void:
 	if not is_wave_on:
 		$LightingTimer.stop()
 		var proba := randf()
-		if proba > 0.0:
+		if proba > 0.33:
 			proba = randf()
 			if proba < 0.5:
-				window.light_up(1)
-				setup_thunder(1)
+				for window in windows:
+					window.light_up(1)
+					setup_thunder(1)
 			elif proba < 0.8:
-				window.light_up(2)
-				setup_thunder(2)
+				for window in windows:
+					window.light_up(2)
+					setup_thunder(2)
 			else:
-				window.light_up(3)
-				setup_thunder(3)
+				for window in windows:
+					window.light_up(3)
+					setup_thunder(3)
 		else:
 			$LightingTimer.start(randfn(10, 2))
 			

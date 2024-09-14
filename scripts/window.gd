@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name WindowInGame
 
 signal window_opened
 var is_opened: bool = false
@@ -25,7 +26,7 @@ func open() -> void:
 	emit_signal("window_opened")
 	is_opened = true
 	$CollisionShape2D.disabled = true
-	permanent_light.scale = Vector2(1.6, 1.6)
+	permanent_light.scale = Vector2(1.75, 1.75)
 
 # Called by lighthouse.gd when a thunder is incoming
 # Light up the window according to the current level
