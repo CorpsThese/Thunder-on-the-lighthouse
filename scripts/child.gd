@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
 @onready var child_sprite: AnimatedSprite2D = $ChildSprite
+
 @onready var flashlight: Node2D = $Flashlight
 @onready var is_holding_flashlight: bool = false
+
 @onready var teddy_bear: Node2D = $TeddyBear
 @onready var animation_player: AnimationPlayer = $TeddyBear/AnimationPlayer
+var is_cuddling:bool = false
 
 const SPEED = 250.0
 const JUMP_VELOCITY = -500.0
@@ -55,8 +58,12 @@ func _physics_process(delta: float) -> void:
 	#Flip sprite depend where the face or faced last
 	if direction < 0.0:
 		child_sprite.flip_h = true
+		teddy_bear.rotation_degrees = 180.0
+		teddy_bear.flip_v = true
 	elif direction > 0.0:
 		child_sprite.flip_h = false
+		teddy_bear.rotation_degrees = 0.0
+		teddy_bear.flip_v = false
 
 #endregion
 	# Add the gravity, deactivated on climbing
@@ -106,8 +113,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("cuddle"):
 		flashlight.visible = false
 		animation_player.play("get_closer")
+		is_cuddling = true
 	if Input.is_action_just_released("cuddle"):
 		animation_player.play("put_away")
+		is_cuddling = false
 
 	#Calculate damage according to how many shadow are in range
 	var attacking_shadows : Array[Node2D] = hurt_box.get_overlapping_bodies()
@@ -157,6 +166,12 @@ func _physics_process(delta: float) -> void:
 
 	%BatteryBar.value = battery
 	%BatteryBar.visible = battery != MAX_BATTERY
+
+
+func thunder_damage(amount: float) -> void:
+	if not is_cuddling:
+		damage(amount)
+
 
 func damage(amount: float) -> void:
 	health -= amount
