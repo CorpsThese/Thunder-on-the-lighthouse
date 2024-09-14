@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name shadow
+class_name Shadow
 
 const SPEED = 100.0
 var player : CharacterBody2D
@@ -10,6 +10,7 @@ var DAMAGE_RATE := 10.0
 signal shadow_defeated
 @onready var light_bar: ProgressBar = %LightBar
 @onready var hurt_box: Area2D = %HurtBox
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _physics_process(delta: float) -> void:
@@ -24,5 +25,6 @@ func _physics_process(delta: float) -> void:
 	if light.size() > 0:
 		light_value += DAMAGE_RATE * light.size()* delta
 		light_bar.value = light_value
+		modulate.a8 = 200 - light_bar.value*10.0
 		if light_value >= 10.0:
 			shadow_defeated.emit(self)

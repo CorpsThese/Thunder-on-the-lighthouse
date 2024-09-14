@@ -1,7 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://djlsmgjgtunpu"]
+[gd_scene load_steps=10 format=3 uid="uid://djlsmgjgtunpu"]
 
-[ext_resource type="Texture2D" uid="uid://t3522536a1os" path="res://icon.svg" id="1_7lu3g"]
 [ext_resource type="Script" path="res://scripts/shadow.gd" id="1_o5nhj"]
+[ext_resource type="Texture2D" uid="uid://b474h2orl16o0" path="res://ressources/textures/shadow.png" id="2_02j6r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0gjl"]
+atlas = ExtResource("2_02j6r")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrxr8"]
+atlas = ExtResource("2_02j6r")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htfq7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0gjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrxr8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p0p35"]
 radius = 10.198
@@ -24,15 +46,18 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="Shadow" type="CharacterBody2D"]
+modulate = Color(1, 1, 1, 0.784314)
 z_index = 10
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_o5nhj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0.277528, 0.277528, 0.277528, 1)
-scale = Vector2(0.4375, 0.4375)
-texture = ExtResource("1_7lu3g")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_htfq7")
+autoplay = "default"
+frame_progress = 0.697634
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_p0p35")
@@ -48,6 +73,7 @@ debug_color = Color(0.920395, 0.256096, 0.304642, 0.42)
 
 [node name="LightBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = -37.0
 offset_top = 37.0
 offset_right = 39.0
