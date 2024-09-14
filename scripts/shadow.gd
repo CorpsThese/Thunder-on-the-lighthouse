@@ -31,6 +31,6 @@ func _physics_process(delta: float) -> void:
 	if light.size() > 0:
 		light_value += DAMAGE_RATE * light.size()* delta
 		light_bar.value = light_value
-		modulate.a8 = 200 - light_bar.value*10.0
+		modulate.a8 = 220 - light_bar.value*20.0
 		if light_value >= 10.0:
 			shadow_defeated.emit(self)

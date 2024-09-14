@@ -52,6 +52,8 @@ func _physics_process(delta: float) -> void:
 	# Ground animations
 	elif (velocity.x > 1 || velocity.x < -1):
 		child_sprite.play("run")
+		if child_sprite.frame == 0 || child_sprite.frame == 4:
+			$Footsteps.play()
 	else:
 		child_sprite.play("idle")
 
@@ -138,10 +140,11 @@ func _physics_process(delta: float) -> void:
 			var window := window_detector.get_overlapping_bodies()[0]
 			window.open()
 
-	#Detects key and gather it
+	#Detects key and pick up it
 	if key_detector.has_overlapping_bodies():
 		key_detector.get_overlapping_bodies()[0].queue_free()
 		update_key_counter(key_counter + 1)
+		$PickupKey.play()
 	#Check if there is a door next to the player
 	#if interact tries to open
 	#only opens if there is a key, else emit signal to start a sound

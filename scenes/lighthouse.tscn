@@ -480,7 +480,7 @@ script = ExtResource("1_lpk0w")
 
 [node name="Child" parent="." instance=ExtResource("2_ysbhu")]
 unique_name_in_owner = true
-position = Vector2(206, 890)
+position = Vector2(200, 920)
 
 [node name="ShadowSpawnArea" type="Path2D" parent="Child"]
 position = Vector2(-848, -492)
@@ -538,14 +538,19 @@ position = Vector2(144, -416)
 is_flip = true
 
 [node name="Key" parent="Level" instance=ExtResource("7_norhh")]
+position = Vector2(360, 184)
 
 [node name="Key2" parent="Level" instance=ExtResource("7_norhh")]
+position = Vector2(152, -8)
 
 [node name="Key3" parent="Level" instance=ExtResource("7_norhh")]
+position = Vector2(264, -360)
 
 [node name="Key4" parent="Level" instance=ExtResource("7_norhh")]
+position = Vector2(40, -184)
 
 [node name="Key5" parent="Level" instance=ExtResource("7_norhh")]
+position = Vector2(72, -392)
 
 [node name="ExitLevel" type="Area2D" parent="Level"]
 unique_name_in_owner = true
@@ -571,6 +576,7 @@ position = Vector2(96, -304)
 [node name="GameUI" type="CanvasLayer" parent="."]
 
 [node name="PlayerUI" type="Control" parent="GameUI"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

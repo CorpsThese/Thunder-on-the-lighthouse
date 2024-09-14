@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://cjo607hfvr2dn"]
+[gd_scene load_steps=53 format=4 uid="uid://cjo607hfvr2dn"]
 
 [ext_resource type="Script" path="res://scripts/lighthouse.gd" id="1_j7rth"]
 [ext_resource type="PackedScene" uid="uid://cmqg83tvc3wae" path="res://scenes/child.tscn" id="2_4cjjo"]
@@ -10,15 +10,22 @@
 [ext_resource type="PackedScene" uid="uid://0d2mdm6qwo1t" path="res://scenes/door.tscn" id="6_v7ot6"]
 [ext_resource type="PackedScene" uid="uid://dwvrpe4k8x7cg" path="res://scenes/key.tscn" id="7_lh78b"]
 [ext_resource type="Texture2D" uid="uid://bumwesb1lkm" path="res://ressources/textures/tile_0077.png" id="8_61tsg"]
-[ext_resource type="Script" path="res://scenes/flashlight_tip.gd" id="8_lm2wr"]
 [ext_resource type="Theme" uid="uid://ckw0dgryqoo2d" path="res://ressources/ui_theme.tres" id="9_bu06t"]
 [ext_resource type="AudioStream" uid="uid://7t4s4lwp0qyi" path="res://ressources/audio/onesoundtorulethemall__thunder15.wav" id="9_yuavh"]
 [ext_resource type="AudioStream" uid="uid://dfile7s7lem0k" path="res://ressources/audio/pnmcarrierailfan__thunder-claps-single-clap-02.wav" id="10_36yj2"]
+[ext_resource type="Texture2D" uid="uid://c56qeyj2iedcy" path="res://ressources/textures/left_joystick.png" id="10_p8rth"]
+[ext_resource type="Texture2D" uid="uid://djtw7vdnpwkj7" path="res://ressources/textures/WASD.png" id="11_augi5"]
 [ext_resource type="AudioStream" uid="uid://b5udcelwcwbhs" path="res://ressources/audio/bastipictures__rain-against-window.mp3" id="11_tjr0p"]
 [ext_resource type="Script" path="res://scripts/game_over_ui.gd" id="12_43mnc"]
+[ext_resource type="FontFile" uid="uid://byunudjlvpltp" path="res://ressources/pixel-script-font/PixelScriptRegular-0WnDG.otf" id="12_c5lpd"]
 [ext_resource type="AudioStream" uid="uid://b45v0e67iype4" path="res://ressources/audio/Solitude-in-the-storm-calms.mp3" id="12_hdwdl"]
 [ext_resource type="Script" path="res://scripts/pause_control.gd" id="12_prqyn"]
 [ext_resource type="AudioStream" uid="uid://isab3moxwcpa" path="res://ressources/audio/Solitude-in-the-storm-fight.mp3" id="13_akxj2"]
+[ext_resource type="Texture2D" uid="uid://be7ktobd8w3f3" path="res://ressources/textures/right_click.png" id="13_hbxff"]
+[ext_resource type="Texture2D" uid="uid://de6n7pi22qaji" path="res://ressources/textures/b_button.png" id="14_hs2vg"]
+[ext_resource type="Texture2D" uid="uid://6n3np74xk3nb" path="res://ressources/textures/x_button.png" id="14_ljb1o"]
+[ext_resource type="Texture2D" uid="uid://kbfiglvplb7j" path="res://ressources/textures/right_joystick.png" id="17_npoko"]
+[ext_resource type="Texture2D" uid="uid://c34taqw1wajvx" path="res://ressources/textures/mouse_move.png" id="18_y2vbh"]
 
 [sub_resource type="Curve2D" id="Curve2D_lqdu0"]
 _data = {
@@ -831,6 +838,10 @@ sources/0 = SubResource("TileSetAtlasSource_c36rp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bxn1u"]
 
+[sub_resource type="FontVariation" id="FontVariation_uwpb1"]
+base_font = ExtResource("12_c5lpd")
+spacing_top = -8
+
 [sub_resource type="Animation" id="Animation_lgu20"]
 length = 0.001
 tracks/0/type = "value"
@@ -973,7 +984,7 @@ next_level = ExtResource("2_weekl")
 
 [node name="Child" parent="." instance=ExtResource("2_4cjjo")]
 unique_name_in_owner = true
-position = Vector2(656, 913)
+position = Vector2(268, 912)
 
 [node name="ShadowSpawnArea" type="Path2D" parent="Child"]
 position = Vector2(-720, -600)
@@ -1012,14 +1023,17 @@ position = Vector2(288, 160)
 position = Vector2(304, 160)
 
 [node name="Windows" type="Node2D" parent="Level"]
+position = Vector2(8, 5.96046e-08)
 
 [node name="Window" parent="Level/Windows" instance=ExtResource("5_c5yqh")]
 use_parent_material = true
 position = Vector2(160, 144)
 
 [node name="Key" parent="Level" instance=ExtResource("7_lh78b")]
+position = Vector2(56, 144)
 
 [node name="Key2" parent="Level" instance=ExtResource("7_lh78b")]
+position = Vector2(328, 120)
 
 [node name="ExitLevel" type="Area2D" parent="Level"]
 unique_name_in_owner = true
@@ -1028,24 +1042,122 @@ position = Vector2(336, 176)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/ExitLevel"]
 shape = SubResource("RectangleShape2D_bxn1u")
 
-[node name="FlashlightTip" type="Label" parent="Level"]
-offset_left = 96.8
-offset_top = 162.2
-offset_right = 256.8
-offset_bottom = 185.2
+[node name="Move" type="Label" parent="Level"]
+offset_left = 51.0
+offset_top = 159.0
+offset_right = 96.0
+offset_bottom = 183.0
 scale = Vector2(0.392, 0.392)
 theme = ExtResource("9_bu06t")
-text = "Click     for flashlight"
-script = ExtResource("8_lm2wr")
+text = "Move
+/"
+horizontal_alignment = 1
+
+[node name="Tile0077" type="Sprite2D" parent="Level/Move"]
+position = Vector2(5.10204, 41.8367)
+texture = ExtResource("10_p8rth")
+
+[node name="Tile0078" type="Sprite2D" parent="Level/Move"]
+position = Vector2(49.4898, 41.8367)
+texture = ExtResource("11_augi5")
+
+[node name="Cuddle" type="Label" parent="Level"]
+offset_left = 97.2
+offset_top = 159.2
+offset_right = 279.2
+offset_bottom = 237.2
+scale = Vector2(0.392, 0.392)
+theme = ExtResource("9_bu06t")
+theme_override_fonts/font = SubResource("FontVariation_uwpb1")
+text = "Cuddle your plush when thunder is heard
+Hold      /"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Tile0078" type="Sprite2D" parent="Level/Cuddle"]
+position = Vector2(139.286, 44.3877)
+texture = ExtResource("13_hbxff")
+
+[node name="Tile0079" type="Sprite2D" parent="Level/Cuddle"]
+position = Vector2(107.653, 44.3877)
+texture = ExtResource("14_hs2vg")
+
+[node name="Drop" type="Label" parent="Level"]
+offset_left = 315.0
+offset_top = 67.0
+offset_right = 365.0
+offset_bottom = 91.0
+scale = Vector2(0.392, 0.392)
+theme = ExtResource("9_bu06t")
+text = "Drop!"
+
+[node name="Climb!=" type="Label" parent="Level"]
+offset_left = 98.8
+offset_top = 116.6
+offset_right = 148.8
+offset_bottom = 140.6
+scale = Vector2(0.392, 0.392)
+theme = ExtResource("9_bu06t")
+text = "Climb!"
+
+[node name="FlashlightTip" type="Label" parent="Level"]
+offset_left = 157.2
+offset_top = 135.0
+offset_right = 349.2
+offset_bottom = 159.0
+scale = Vector2(0.392, 0.392)
+theme = ExtResource("9_bu06t")
+text = "Press     /     for flashlight"
+
+[node name="Tile0078" type="Sprite2D" parent="Level/FlashlightTip"]
+position = Vector2(58.1633, 14.7959)
+scale = Vector2(1, 1)
+texture = ExtResource("14_ljb1o")
 
 [node name="Tile0077" type="Sprite2D" parent="Level/FlashlightTip"]
-position = Vector2(46.4, 12)
+position = Vector2(84.6939, 14.7959)
 texture = ExtResource("8_61tsg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/FlashlightTip"]
 libraries = {
 "": SubResource("AnimationLibrary_3boht")
 }
+
+[node name="FlashlightTip2" type="Label" parent="Level"]
+offset_left = 174.2
+offset_top = 182.8
+offset_right = 272.2
+offset_bottom = 206.8
+scale = Vector2(0.392, 0.392)
+theme = ExtResource("9_bu06t")
+text = "Aim      /"
+
+[node name="Tile0078" type="Sprite2D" parent="Level/FlashlightTip2"]
+position = Vector2(43.8776, 14.2857)
+scale = Vector2(1, 1)
+texture = ExtResource("17_npoko")
+
+[node name="Tile0077" type="Sprite2D" parent="Level/FlashlightTip2"]
+position = Vector2(72.449, 14.7959)
+texture = ExtResource("18_y2vbh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/FlashlightTip2"]
+libraries = {
+"": SubResource("AnimationLibrary_3boht")
+}
+
+[node name="Shadow" type="Label" parent="Level"]
+offset_left = 224.0
+offset_top = 159.0
+offset_right = 363.0
+offset_bottom = 237.0
+scale = Vector2(0.392, 0.392)
+theme = ExtResource("9_bu06t")
+theme_override_fonts/font = SubResource("FontVariation_uwpb1")
+text = "Defeat Shadows
+to build your Courage back!"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 
