@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cjo607hfvr2dn"]
+[gd_scene load_steps=45 format=4 uid="uid://cjo607hfvr2dn"]
 
 [ext_resource type="Script" path="res://scripts/lighthouse.gd" id="1_j7rth"]
 [ext_resource type="PackedScene" uid="uid://cmqg83tvc3wae" path="res://scenes/child.tscn" id="2_4cjjo"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dwvrpe4k8x7cg" path="res://scenes/key.tscn" id="7_lh78b"]
 [ext_resource type="Texture2D" uid="uid://bumwesb1lkm" path="res://ressources/textures/tile_0077.png" id="8_61tsg"]
 [ext_resource type="Script" path="res://scenes/flashlight_tip.gd" id="8_lm2wr"]
-[ext_resource type="Theme" path="res://ressources/ui_theme.tres" id="9_bu06t"]
+[ext_resource type="Theme" uid="uid://ckw0dgryqoo2d" path="res://ressources/ui_theme.tres" id="9_bu06t"]
 [ext_resource type="AudioStream" uid="uid://7t4s4lwp0qyi" path="res://ressources/audio/onesoundtorulethemall__thunder15.wav" id="9_yuavh"]
 [ext_resource type="AudioStream" uid="uid://dfile7s7lem0k" path="res://ressources/audio/pnmcarrierailfan__thunder-claps-single-clap-02.wav" id="10_36yj2"]
 [ext_resource type="AudioStream" uid="uid://b5udcelwcwbhs" path="res://ressources/audio/bastipictures__rain-against-window.mp3" id="11_tjr0p"]
@@ -973,7 +973,7 @@ next_level = ExtResource("2_weekl")
 
 [node name="Child" parent="." instance=ExtResource("2_4cjjo")]
 unique_name_in_owner = true
-position = Vector2(800, 880)
+position = Vector2(656, 913)
 
 [node name="ShadowSpawnArea" type="Path2D" parent="Child"]
 position = Vector2(-720, -600)
@@ -1012,23 +1012,18 @@ position = Vector2(288, 160)
 position = Vector2(304, 160)
 
 [node name="Windows" type="Node2D" parent="Level"]
-scale = Vector2(1, 1)
 
 [node name="Window" parent="Level/Windows" instance=ExtResource("5_c5yqh")]
 use_parent_material = true
 position = Vector2(160, 144)
-scale = Vector2(1, 1)
 
 [node name="Key" parent="Level" instance=ExtResource("7_lh78b")]
-position = Vector2(48, 136)
 
 [node name="Key2" parent="Level" instance=ExtResource("7_lh78b")]
-position = Vector2(320, 112)
 
 [node name="ExitLevel" type="Area2D" parent="Level"]
 unique_name_in_owner = true
 position = Vector2(336, 176)
-scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/ExitLevel"]
 shape = SubResource("RectangleShape2D_bxn1u")
@@ -1053,7 +1048,6 @@ libraries = {
 }
 
 [node name="GameUI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PlayerUI" type="Control" parent="GameUI"]
 layout_mode = 3

@@ -480,7 +480,7 @@ script = ExtResource("1_lpk0w")
 
 [node name="Child" parent="." instance=ExtResource("2_ysbhu")]
 unique_name_in_owner = true
-position = Vector2(1491, 419)
+position = Vector2(206, 890)
 
 [node name="ShadowSpawnArea" type="Path2D" parent="Child"]
 position = Vector2(-848, -492)
@@ -504,7 +504,6 @@ autostart = true
 scale = Vector2(5, 5)
 
 [node name="Darkness" type="CanvasModulate" parent="Level"]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Background" type="TileMapLayer" parent="Level"]
@@ -531,25 +530,26 @@ position = Vector2(176, -256)
 is_flip = true
 
 [node name="Door4" parent="Level" instance=ExtResource("6_6i3sl")]
+position = Vector2(128, -416)
+is_flip = true
+
+[node name="Door5" parent="Level" instance=ExtResource("6_6i3sl")]
 position = Vector2(144, -416)
 is_flip = true
 
 [node name="Key" parent="Level" instance=ExtResource("7_norhh")]
-position = Vector2(352, 176)
 
 [node name="Key2" parent="Level" instance=ExtResource("7_norhh")]
-position = Vector2(144, -16)
 
 [node name="Key3" parent="Level" instance=ExtResource("7_norhh")]
-position = Vector2(256, -368)
 
 [node name="Key4" parent="Level" instance=ExtResource("7_norhh")]
-position = Vector2(32, -192)
+
+[node name="Key5" parent="Level" instance=ExtResource("7_norhh")]
 
 [node name="ExitLevel" type="Area2D" parent="Level"]
 unique_name_in_owner = true
 position = Vector2(168.2, -455.2)
-scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/ExitLevel"]
 shape = SubResource("RectangleShape2D_bxn1u")
@@ -559,17 +559,14 @@ shape = SubResource("RectangleShape2D_bxn1u")
 [node name="Window" parent="Level/Windows" instance=ExtResource("5_kp08b")]
 use_parent_material = true
 position = Vector2(240, 48)
-scale = Vector2(1, 1)
 
 [node name="Window2" parent="Level/Windows" instance=ExtResource("5_kp08b")]
 use_parent_material = true
 position = Vector2(80, -192)
-scale = Vector2(1, 1)
 
 [node name="Window3" parent="Level/Windows" instance=ExtResource("5_kp08b")]
 use_parent_material = true
 position = Vector2(96, -304)
-scale = Vector2(1, 1)
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 
