@@ -50,20 +50,19 @@ func delete_shadow(shadow_node: CharacterBody2D) -> void:
 	if shadow_killed == wave_objective:
 		is_wave_on = false
 		$ShadowSpawnTimer.set_wait_time(4)
-		max_shadow -= 3
+		max_shadow -= 1
 		wave_objective += 1
 		music_fader.play("fade_into_calm")
-
-func _on_window_window_opened() -> void:
-	start_wave()
 	
 func start_wave() -> void:
 	shadow_killed = 0
-	max_shadow += 4
+	max_shadow += 3
 	is_wave_on = true
 	$ShadowSpawnTimer.start(1)
 	music_fader.play("fade_into_fight")
 
+func _on_window_window_opened() -> void:
+	start_wave()
 
 # On timer out there is a chance to have lighting
 # If so, there is 3 possible lighting level

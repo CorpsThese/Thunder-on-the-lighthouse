@@ -918,6 +918,7 @@ _data = {
 
 [node name="Tutorial" type="Node"]
 script = ExtResource("1_j7rth")
+max_shadow = 0
 wave_objective = 1
 next_level = ExtResource("2_weekl")
 

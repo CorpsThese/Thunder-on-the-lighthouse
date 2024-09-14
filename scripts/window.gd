@@ -35,10 +35,13 @@ func light_up(level: int) -> void:
 		match level:
 			1:
 				$LightingSprite.texture = load("res://ressources/textures/lighting_level_1.png")
+				$LightingSprite/PointLight2D.scale = Vector2(2.5, 2.5)
 			2:
 				$LightingSprite.texture = load("res://ressources/textures/lighting_level_2.png")
+				$LightingSprite/PointLight2D.scale = Vector2(3.25, 3.25)
 			3:
 				$LightingSprite.texture = load("res://ressources/textures/lighting_level_3.png")
+				$LightingSprite/PointLight2D.scale = Vector2(4, 4)
 		$LightingSprite.show()
 		repeat = 0
 		timer.wait_time = 0.4

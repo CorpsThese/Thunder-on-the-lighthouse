@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $TeddyBear/AnimationPlayer
 var is_cuddling:bool = false
 
-var SPEED := 250.0
+var SPEED := 200.0
 var JUMP_VELOCITY := -450.0
 var direction: float
 var direction_vertical: float
@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		child_sprite.play("idle")
 
-	#Flip sprite depend where the face or faced last
+	#Flip sprite depend where facing or faced last
 	if direction < 0.0:
 		child_sprite.flip_h = true
 		teddy_bear.rotation_degrees = 180.0
@@ -110,7 +110,9 @@ func _physics_process(delta: float) -> void:
 	#flashlight.look_at(Vector2(Input.get_joy_axis(1, JOY_AXIS_RIGHT_X), Input.get_joy_axis(1, JOY_AXIS_RIGHT_Y)))
 
 	if Input.is_action_just_pressed("cuddle"):
+		$Flashlight/FlashlightAudio.play()
 		flashlight.visible = false
+		$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = true
 		animation_player.play("get_closer")
 		is_cuddling = true
 		SPEED -= 100
@@ -188,7 +190,6 @@ func damage(amount: float) -> void:
 
 func toggle_flashlight() -> void:
 	emit_signal("flashlight_used")
-	animation_player.play("put_away")
 	$Flashlight/FlashlightAudio.play()
 	flashlight.visible = !flashlight.visible
 	$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = !$Flashlight/TorchlightLight/CollisionPolygon2D.disabled

@@ -201,7 +201,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_435t3"]
-size = Vector2(44, 56)
+size = Vector2(42, 64)
 
 [sub_resource type="Gradient" id="Gradient_dikww"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -465,16 +465,16 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_doehs"]
-size = Vector2(24, 81)
+size = Vector2(24, 68)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_582br"]
-size = Vector2(60, 54)
+size = Vector2(60, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr6eu"]
 size = Vector2(86, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c58j0"]
-size = Vector2(60, 73)
+size = Vector2(60, 64)
 
 [node name="Child" type="CharacterBody2D"]
 z_index = 10
@@ -488,7 +488,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(1, 16)
 shape = SubResource("RectangleShape2D_435t3")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -583,7 +583,7 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetector"]
-position = Vector2(0, 13.5)
+position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_doehs")
 debug_color = Color(0.470588, 0.501961, 0.25098, 0.419608)
 
@@ -594,7 +594,7 @@ collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WindowDetector"]
-position = Vector2(-1, 0)
+position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_582br")
 debug_color = Color(0.580941, 0.4581, 0.176535, 0.419608)
 
