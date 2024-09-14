@@ -747,7 +747,7 @@ size_flags_vertical = 3
 text = "Exit"
 
 [node name="LightingTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 6.0
 autostart = true
 
 [node name="ThunderTimer" type="Timer" parent="."]

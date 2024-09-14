@@ -9,8 +9,8 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $TeddyBear/AnimationPlayer
 var is_cuddling:bool = false
 
-const SPEED = 250.0
-const JUMP_VELOCITY = -450.0
+var SPEED := 250.0
+var JUMP_VELOCITY := -450.0
 var direction: float
 var direction_vertical: float
 
@@ -113,9 +113,13 @@ func _physics_process(delta: float) -> void:
 		flashlight.visible = false
 		animation_player.play("get_closer")
 		is_cuddling = true
+		SPEED -= 100
+		JUMP_VELOCITY += 150
 	if Input.is_action_just_released("cuddle"):
 		animation_player.play("put_away")
 		is_cuddling = false
+		SPEED += 100
+		JUMP_VELOCITY -= 150
 
 	#Calculate damage according to how many shadow are in range
 	var attacking_shadows : Array[Node2D] = hurt_box.get_overlapping_bodies()

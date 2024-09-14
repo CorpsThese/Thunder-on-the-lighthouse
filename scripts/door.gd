@@ -10,7 +10,9 @@ func open() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$DoorSprite.flip_h = is_flip
+	if is_flip:
+		$DoorSprite.flip_h = is_flip
+		$CollisionShape2D.position.x = 12.5
 	pass # Replace with function body.
 
 

@@ -83,6 +83,9 @@ func _on_lighting_timer_timeout() -> void:
 			else:
 				window.light_up(3)
 				setup_thunder(3)
+		else:
+			$LightingTimer.start(randf_range(6, 12))
+			
 
 # Init thunder timer according to level
 func setup_thunder(level: int) -> void:
@@ -103,6 +106,7 @@ func _on_thunder_timer_timeout() -> void:
 # When sound is over set is_thunder to false
 func _on_thunder_sound_finished() -> void:
 	is_thunder = false
+	#var rn
 	$LightingTimer.start(randf_range(6, 12))
 
 func _on_child_courage_depleted() -> void:
