@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/PixelScriptRegular-4B83W.ttf-dee37b74e39703b7
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
