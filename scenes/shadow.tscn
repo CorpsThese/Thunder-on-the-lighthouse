@@ -57,7 +57,7 @@ z_index = 5
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_htfq7")
 autoplay = "default"
-frame_progress = 0.981601
+frame_progress = 0.697634
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_p0p35")
