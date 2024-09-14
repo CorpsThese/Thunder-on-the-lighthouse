@@ -125,7 +125,10 @@ func _on_retry_pressed() -> void:
 
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	
+	# TODO: proper main menu
+	%Pause.hide()
+	#get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 # Supposedly only leaving the tutoral => lighhouse the lighthouse => end
 # next_level is an export value you can change in editor

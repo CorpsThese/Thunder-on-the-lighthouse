@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=54 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://c6x8vtuhef6ki" path="res://ressources/textures/child.png" id="2_28n7a"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://hgklt6jkrbx0" path="res://ressources/textures/flashlight_light.png" id="4_ijt5a"]
 [ext_resource type="AudioStream" uid="uid://b54ngs1gn42fj" path="res://ressources/audio/sadiquecat__flashlight-button-press_2.wav" id="5_35wil"]
 [ext_resource type="AudioStream" uid="uid://psg2b6v1ydao" path="res://ressources/audio/pagancow__dorm-door-opening.wav" id="5_rke8f"]
+[ext_resource type="Texture2D" uid="uid://bse2lv7t12vcx" path="res://ressources/textures/key.png" id="8_nhjae"]
 [ext_resource type="Script" path="res://scripts/interactable_popup.gd" id="9_7tbvx"]
 [ext_resource type="Texture2D" uid="uid://dxdnr84u4fm4s" path="res://ressources/textures/tile_0123.png" id="9_jtwpu"]
 [ext_resource type="Texture2D" uid="uid://c4e1ylhycps2l" path="res://ressources/textures/tile_0048.png" id="10_53gnp"]
@@ -576,6 +577,18 @@ theme_override_styles/background = SubResource("StyleBoxFlat_mfnp8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4gnjj")
 value = 100.0
 show_percentage = false
+
+[node name="Key" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-20, -30)
+scale = Vector2(2, 2)
+texture = ExtResource("8_nhjae")
+
+[node name="Key2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(15, -30)
+scale = Vector2(2, 2)
+texture = ExtResource("8_nhjae")
 
 [node name="LadderDetector" type="Area2D" parent="."]
 unique_name_in_owner = true

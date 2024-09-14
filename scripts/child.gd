@@ -136,8 +136,7 @@ func _physics_process(delta: float) -> void:
 	#Detects key and gather it
 	if key_detector.has_overlapping_bodies():
 		key_detector.get_overlapping_bodies()[0].queue_free()
-		key_counter += 1
-		emit_signal("key_updated", key_counter)
+		update_key_counter(key_counter + 1)
 	#Check if there is a door next to the player
 	#if interact tries to open
 	#only opens if there is a key, else emit signal to start a sound
@@ -145,8 +144,7 @@ func _physics_process(delta: float) -> void:
 		show_interactable_popup = true
 		if Input.is_action_just_pressed("interact"):
 			if key_counter > 0:
-				key_counter -= 1
-				emit_signal("key_updated", key_counter)
+				update_key_counter(key_counter - 1)
 				var door := door_detector.get_overlapping_bodies()[0]
 				door.open()
 				$DoorOpened.play()
@@ -167,6 +165,15 @@ func _physics_process(delta: float) -> void:
 	%BatteryBar.value = battery
 	%BatteryBar.visible = battery != MAX_BATTERY
 
+func update_key_counter(new_key_counter: int) -> void:
+	key_counter = new_key_counter
+	emit_signal("key_updated", key_counter)
+	
+	$Key.visible = key_counter >= 1
+	$Key2.visible = key_counter >= 2
+	
+	if key_counter >= 3:
+		print('More than 3 keys are not supported by UI!')
 
 func thunder_damage(amount: float) -> void:
 	if not is_cuddling:

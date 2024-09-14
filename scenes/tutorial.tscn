@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dwvrpe4k8x7cg" path="res://scenes/key.tscn" id="7_lh78b"]
 [ext_resource type="Texture2D" uid="uid://bumwesb1lkm" path="res://ressources/textures/tile_0077.png" id="8_61tsg"]
 [ext_resource type="Script" path="res://scenes/flashlight_tip.gd" id="8_lm2wr"]
-[ext_resource type="Theme" uid="uid://ckw0dgryqoo2d" path="res://ressources/ui_theme.tres" id="9_bu06t"]
+[ext_resource type="Theme" path="res://ressources/ui_theme.tres" id="9_bu06t"]
 [ext_resource type="AudioStream" uid="uid://7t4s4lwp0qyi" path="res://ressources/audio/onesoundtorulethemall__thunder15.wav" id="9_yuavh"]
 [ext_resource type="AudioStream" uid="uid://dfile7s7lem0k" path="res://ressources/audio/pnmcarrierailfan__thunder-claps-single-clap-02.wav" id="10_36yj2"]
 [ext_resource type="AudioStream" uid="uid://b5udcelwcwbhs" path="res://ressources/audio/bastipictures__rain-against-window.mp3" id="11_tjr0p"]
@@ -997,6 +997,7 @@ libraries = {
 }
 
 [node name="GameUI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="GameUI"]
 layout_mode = 3
@@ -1005,9 +1006,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_bu06t")
 
 [node name="KeyLabel" type="Label" parent="GameUI/Control"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_right = 50.0
 offset_bottom = 23.0
@@ -1025,6 +1028,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_bu06t")
 color = Color(0, 0, 0, 0.392157)
 
 [node name="Label" type="Label" parent="GameOver/ColorRect"]
@@ -1055,6 +1059,7 @@ offset_right = 154.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_bu06t")
 
 [node name="Retry" type="Button" parent="GameOver/VBoxContainer"]
 layout_mode = 2
@@ -1077,6 +1082,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_bu06t")
 color = Color(0, 0, 0, 0.392157)
 
 [node name="Label" type="Label" parent="Pause/ColorRect"]
