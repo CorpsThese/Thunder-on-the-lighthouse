@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cmqg83tvc3wae"]
+[gd_scene load_steps=57 format=3 uid="uid://cmqg83tvc3wae"]
 
 [ext_resource type="Script" path="res://scripts/child.gd" id="1_dso0k"]
 [ext_resource type="Texture2D" uid="uid://c6x8vtuhef6ki" path="res://ressources/textures/child.png" id="2_28n7a"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://scripts/interactable_popup.gd" id="9_7tbvx"]
 [ext_resource type="Texture2D" uid="uid://dxdnr84u4fm4s" path="res://ressources/textures/tile_0123.png" id="9_jtwpu"]
 [ext_resource type="Texture2D" uid="uid://c4e1ylhycps2l" path="res://ressources/textures/tile_0048.png" id="10_53gnp"]
+[ext_resource type="AudioStream" uid="uid://dol7x1c71oya6" path="res://ressources/audio/Retro FootStep 03.wav" id="14_rg2bj"]
+[ext_resource type="AudioStream" uid="uid://b0tifqce2nh6k" path="res://ressources/audio/Retro PickUp Coin 04.wav" id="15_o4nwl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qcwk0"]
 atlas = ExtResource("2_28n7a")
@@ -459,7 +461,12 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gnjj"]
-bg_color = Color(0.792157, 0.690196, 0.431373, 1)
+bg_color = Color(0.588235, 0.635294, 0.701961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.254902, 0.227451, 0.258824, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -477,6 +484,11 @@ size = Vector2(86, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c58j0"]
 size = Vector2(60, 64)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l0rn1"]
+random_pitch = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("14_rg2bj")
+
 [node name="Child" type="CharacterBody2D"]
 z_index = 10
 script = ExtResource("1_dso0k")
@@ -485,8 +497,9 @@ script = ExtResource("1_dso0k")
 z_index = 5
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_201e2")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
+frame_progress = 0.824311
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 16)
@@ -559,10 +572,10 @@ debug_color = Color(0.920395, 0.256096, 0.304642, 0.42)
 
 [node name="CourageBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-offset_left = -37.0
-offset_top = 55.0
-offset_right = 39.0
-offset_bottom = 68.0
+offset_left = -38.0
+offset_top = 51.0
+offset_right = 38.0
+offset_bottom = 64.0
 theme_override_styles/background = SubResource("StyleBoxFlat_mfnp8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_77u7d")
 value = 100.0
@@ -570,10 +583,10 @@ show_percentage = false
 
 [node name="BatteryBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-offset_left = -37.0
-offset_top = 90.0
-offset_right = 39.0
-offset_bottom = 103.0
+offset_left = -26.0
+offset_top = 67.0
+offset_right = 27.0
+offset_bottom = 76.0
 theme_override_styles/background = SubResource("StyleBoxFlat_mfnp8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4gnjj")
 value = 100.0
@@ -655,6 +668,14 @@ visible = false
 position = Vector2(28, -22)
 scale = Vector2(3.6875, 3.6875)
 texture = ExtResource("9_jtwpu")
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_l0rn1")
+bus = &"Sounds"
+
+[node name="PickupKey" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_o4nwl")
+bus = &"Sounds"
 
 [connection signal="animation_finished" from="TeddyBear/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
