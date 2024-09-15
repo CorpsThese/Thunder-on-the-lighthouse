@@ -1,29 +1,26 @@
+Code by Cortez & Elginas
 
-Tileset dungeon
+Main musics by SamWritesMusic https://www.youtube.com/@samwritesmusic5402
+KevinMcLeod adding the sun https://www.youtube.com/watch?v=P-AdygRH3PM
+
+Tileset dungeon by IncolGames / David G
 https://incolgames.itch.io/dungeon-platformer-tile-set-pixel-art
 
-Background
-https://free-game-assets.itch.io/free-horizontal-game-backgrounds
-
-playerSprites_
+Player sprite by analogStudios_
 https://analogstudios.itch.io/playersprites
 
 Sounds
-benjaminnelan__door-locked https://freesound.org/people/BenjaminNelan/sounds/321087/
+benjaminnelan door-locked https://freesound.org/people/BenjaminNelan/sounds/321087/
 
-pagancow__dorm-door-opening https://freesound.org/people/pagancow/sounds/15419/
+pagancow dorm-door-opening https://freesound.org/people/pagancow/sounds/15419/
 
-pnmcarrierailfan__thunder-claps-single-clap-02 https://freesound.org/people/PNMCarrieRailfan/sounds/682352/
+pnmcarrierailfan thunder-claps-single-clap-02 https://freesound.org/people/PNMCarrieRailfan/sounds/682352/
 
-onesoundtorulethemall__thunder15 https://freesound.org/people/OneSoundToRuleThemAll/sounds/238796/
+onesoundtorulethemall thunder15 https://freesound.org/people/OneSoundToRuleThemAll/sounds/238796/
 
-bastipictures__rain-against-window https://freesound.org/people/bastipictures/sounds/243774/
+bastipictures rain-against-window https://freesound.org/people/bastipictures/sounds/243774/
 
-sadiquecat__flashlight-button-press https://freesound.org/people/Sadiquecat/sounds/706439/
-
-SamWritesMusic calm & fight music
-
-KevinMcLeod adding the sun https://www.youtube.com/watch?v=P-AdygRH3PM
+sadiquecat flashlight-button-press https://freesound.org/people/Sadiquecat/sounds/706439/
 
 FreeSFX https://kronbits.itch.io/freesfx
 PickUp

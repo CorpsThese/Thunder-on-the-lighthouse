@@ -110,7 +110,12 @@ func _physics_process(delta: float) -> void:
 	flashlight.look_at(get_global_mouse_position())
 	# Controler support
 	#flashlight.look_at(Vector2(Input.get_joy_axis(1, JOY_AXIS_RIGHT_X), Input.get_joy_axis(1, JOY_AXIS_RIGHT_Y)))
-
+	var controllerangle := Vector2.ZERO.angle()
+	var xAxisRL := Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+	var yAxisUD := Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+	controllerangle = Vector2(xAxisRL, yAxisUD).angle()
+	rotation = controllerangle
+	
 	if Input.is_action_just_pressed("cuddle"):
 		if flashlight.visible:
 			toggle_flashlight()

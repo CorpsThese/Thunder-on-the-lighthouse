@@ -17,7 +17,8 @@ func _on_exit_pressed() -> void:
 
 func _on_credits_pressed() -> void:
 	$Control/CreditsPanel.visible = !$Control/CreditsPanel.visible
-
+	$Control/EndText.visible = !$Control/EndText.visible
+	
 
 func _on_thunder_timer_timeout() -> void:
 	$ThunderSound.play()

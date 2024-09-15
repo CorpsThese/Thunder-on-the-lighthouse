@@ -507,7 +507,6 @@ autostart = true
 scale = Vector2(5, 5)
 
 [node name="Darkness" type="CanvasModulate" parent="Level"]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Background" type="TileMapLayer" parent="Level"]
