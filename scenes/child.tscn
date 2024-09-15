@@ -529,10 +529,11 @@ libraries = {
 
 [node name="Flashlight" type="Node2D" parent="."]
 visible = false
+z_index = 5
 position = Vector2(0, 16)
 
 [node name="TorchlightLight" type="Area2D" parent="Flashlight"]
-position = Vector2(64, 0)
+position = Vector2(54, 0)
 collision_layer = 4
 collision_mask = 4
 
@@ -553,7 +554,7 @@ shadow_color = Color(1, 1, 1, 0.654902)
 texture = ExtResource("4_ijt5a")
 
 [node name="TorchlightSprite" type="Sprite2D" parent="Flashlight"]
-position = Vector2(64, 0)
+position = Vector2(54, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("4_307u6")
 
@@ -672,12 +673,12 @@ texture = ExtResource("9_jtwpu")
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_l0rn1")
-volume_db = -8.0
+volume_db = -10.0
 bus = &"Sounds"
 
 [node name="PickupKey" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_o4nwl")
-volume_db = -4.0
+volume_db = -12.0
 bus = &"Sounds"
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
