@@ -112,9 +112,11 @@ func _physics_process(delta: float) -> void:
 	#flashlight.look_at(Vector2(Input.get_joy_axis(1, JOY_AXIS_RIGHT_X), Input.get_joy_axis(1, JOY_AXIS_RIGHT_Y)))
 
 	if Input.is_action_just_pressed("cuddle"):
-		$Flashlight/FlashlightAudio.play()
-		flashlight.visible = false
-		$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = true
+		if flashlight.visible:
+			toggle_flashlight()
+		#$Flashlight/FlashlightAudio.play()
+		#flashlight.visible = false
+		#$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = true
 		animation_player.play("get_closer")
 		is_cuddling = true
 		SPEED -= 100

@@ -46,7 +46,13 @@ func light_up(level: int) -> void:
 		repeat = 0
 		timer.wait_time = 0.4
 		timer.start()
-
+	else:
+		$LightingSprite.texture = load("res://ressources/textures/lighting_level_0.png")
+		$LightingSprite/PointLight2D.scale = Vector2(0.75, 0.75)
+		$LightingSprite.show()
+		repeat = 0
+		timer.wait_time = 0.4
+		timer.start()
 
 func _on_timer_timeout() -> void:
 	if repeat == max_repeat:
@@ -55,7 +61,6 @@ func _on_timer_timeout() -> void:
 		repeat += 1
 	elif repeat > max_repeat:
 		$LightingSprite.hide()
-		timer.stop()
 	else:
 		timer.wait_time = 0.15
 		if $LightingSprite.visible:
