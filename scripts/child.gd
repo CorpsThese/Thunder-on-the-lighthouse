@@ -115,8 +115,6 @@ func _physics_process(delta: float) -> void:
 		var xAxisRL := Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
 		var yAxisUD := Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
 		controllerangle = Vector2(xAxisRL, yAxisUD).angle()
-		print("X: %s" %xAxisRL)
-		print("Y: %s" %yAxisUD)
 		if abs(xAxisRL) > 0.3 || abs(yAxisUD) > 0.3:
 			flashlight.rotation = controllerangle
 
