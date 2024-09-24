@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 		var direction := global_position.direction_to(player.global_position)
 		velocity = direction * SPEED
 		move_and_slide()
-		
+
 	#Flip sprite depend where facing or faced last
 	if velocity.x < 0.0:
 		animated_sprite_2d.flip_h = false

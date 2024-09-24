@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kbfiglvplb7j"
-path="res://.godot/imported/right_joystick.png-2b04f82dd44035c71d15be3708c7c4be.ctex"
+uid="uid://cqlqvc5u5ptea"
+path="res://.godot/imported/w_key.png-d696ad457e36a1346084d994da273c1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/textures/right_joystick.png"
-dest_files=["res://.godot/imported/right_joystick.png-2b04f82dd44035c71d15be3708c7c4be.ctex"]
+source_file="res://ressources/textures/buttons/w_key.png"
+dest_files=["res://.godot/imported/w_key.png-d696ad457e36a1346084d994da273c1f.ctex"]
 
 [params]
 

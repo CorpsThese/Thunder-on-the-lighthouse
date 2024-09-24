@@ -42,26 +42,30 @@ func spawn_shadow() -> void:
 func _on_shadow_spawn_timer_timeout() -> void:
 	if shadow_counter < max_shadow:
 		spawn_shadow()
+		$ShadowSpawnTimer.start()
+	else:
+		$ShadowSpawnTimer.stop()
 
 func delete_shadow(shadow_node: CharacterBody2D) -> void:
 	shadow_node.queue_free()
 	$ShadowDefeated.play()
 	%Child.damage(-5)
 	shadow_counter -= 1
+	$ShadowSpawnTimer.start()
 	if is_wave_on:
 		shadow_killed += 1
 	if shadow_killed == wave_objective:
 		is_wave_on = false
-		$ShadowSpawnTimer.set_wait_time(4)
+		$ShadowSpawnTimer.set_wait_time(5)
 		max_shadow -= 1
 		wave_objective += 1
 		music_fader.play("fade_into_calm")
-	
+
 func start_wave() -> void:
 	shadow_killed = 0
 	max_shadow += 3
 	is_wave_on = true
-	$ShadowSpawnTimer.start(1)
+	$ShadowSpawnTimer.start(1.5)
 	music_fader.play("fade_into_fight")
 
 func _on_window_window_opened() -> void:
@@ -90,7 +94,7 @@ func _on_lighting_timer_timeout() -> void:
 					setup_thunder(3)
 		else:
 			$LightingTimer.start(randfn(10, 2))
-			
+
 
 # Init thunder timer according to level
 func setup_thunder(level: int) -> void:

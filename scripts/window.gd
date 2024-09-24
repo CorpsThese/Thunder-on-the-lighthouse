@@ -9,15 +9,6 @@ var repeat := 0
 
 @onready var permanent_light: PointLight2D = $WindowSprite/PermanentLight
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 # Opens the window by changing the sprite
 # change the value of is_opened so it can light_up and
 # Signal used by lighthouse.gd to start a wave

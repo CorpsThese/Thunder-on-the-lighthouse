@@ -107,30 +107,21 @@ func _physics_process(delta: float) -> void:
 		toggle_flashlight()
 	# Points the flashlight
 	# Mouse support
-	flashlight.look_at(get_global_mouse_position())
+	if Input.get_last_mouse_velocity() != Vector2.ZERO:
+		flashlight.look_at(get_global_mouse_position())
 	# Controler support
-	#flashlight.look_at(Vector2(Input.get_joy_axis(1, JOY_AXIS_RIGHT_X), Input.get_joy_axis(1, JOY_AXIS_RIGHT_Y)))
-	var controllerangle := Vector2.ZERO.angle()
-	var xAxisRL := Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
-	var yAxisUD := Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
-	controllerangle = Vector2(xAxisRL, yAxisUD).angle()
-	rotation = controllerangle
-	
+	if Input.get_connected_joypads():
+		var controllerangle := Vector2.ZERO.angle()
+		var xAxisRL := Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+		var yAxisUD := Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+		controllerangle = Vector2(xAxisRL, yAxisUD).angle()
+		if abs(xAxisRL) > 0.3 || abs(yAxisUD) > 0.3:
+			flashlight.rotation = controllerangle
+
 	if Input.is_action_just_pressed("cuddle"):
-		if flashlight.visible:
-			toggle_flashlight()
-		#$Flashlight/FlashlightAudio.play()
-		#flashlight.visible = false
-		#$Flashlight/TorchlightLight/CollisionPolygon2D.disabled = true
-		animation_player.play("get_closer")
-		is_cuddling = true
-		SPEED -= 100
-		JUMP_VELOCITY += 150
+		start_cuddle()
 	if Input.is_action_just_released("cuddle"):
-		animation_player.play("put_away")
-		is_cuddling = false
-		SPEED += 100
-		JUMP_VELOCITY -= 150
+		stop_cuddle()
 
 	#Calculate damage according to how many shadow are in range
 	var attacking_shadows : Array[Node2D] = hurt_box.get_overlapping_bodies()
@@ -183,10 +174,10 @@ func _physics_process(delta: float) -> void:
 func update_key_counter(new_key_counter: int) -> void:
 	key_counter = new_key_counter
 	emit_signal("key_updated", key_counter)
-	
+
 	$Key.visible = key_counter >= 1
 	$Key2.visible = key_counter >= 2
-	
+
 	if key_counter >= 3:
 		print('More than 3 keys are not supported by UI!')
 
@@ -207,6 +198,8 @@ func damage(amount: float) -> void:
 		courage_depleted.emit()
 
 func toggle_flashlight() -> void:
+	if is_cuddling:
+		stop_cuddle()
 	emit_signal("flashlight_used")
 	$Flashlight/FlashlightAudio.play()
 	flashlight.visible = !flashlight.visible
@@ -223,3 +216,19 @@ func _on_hurt_box_body_exited(body: Node2D) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "get_closer":
 		animation_player.play("cuddling")
+
+func start_cuddle() -> void:
+	if flashlight.visible:
+		toggle_flashlight()
+	is_cuddling = true
+	SPEED -= 100
+	JUMP_VELOCITY += 150
+	animation_player.play("get_closer")
+
+func stop_cuddle() -> void:
+	# if state to cover edge case when we use flashlight while cuddling
+	if is_cuddling:
+		is_cuddling = false
+		SPEED += 100
+		JUMP_VELOCITY -= 150
+		animation_player.play("put_away")

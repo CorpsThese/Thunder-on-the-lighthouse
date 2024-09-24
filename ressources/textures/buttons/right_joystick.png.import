@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxdnr84u4fm4s"
-path="res://.godot/imported/tile_0123.png-076e3c2b46cb86effd8030b4f42c3424.ctex"
+uid="uid://kbfiglvplb7j"
+path="res://.godot/imported/right_joystick.png-988ad8e72a9cd368500669904bf3b977.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/textures/tile_0123.png"
-dest_files=["res://.godot/imported/tile_0123.png-076e3c2b46cb86effd8030b4f42c3424.ctex"]
+source_file="res://ressources/textures/buttons/right_joystick.png"
+dest_files=["res://.godot/imported/right_joystick.png-988ad8e72a9cd368500669904bf3b977.ctex"]
 
 [params]
 

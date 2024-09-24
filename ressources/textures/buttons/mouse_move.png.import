@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bumwesb1lkm"
-path="res://.godot/imported/tile_0077.png-617da2cbec05b5abab808a2aac732b58.ctex"
+uid="uid://c34taqw1wajvx"
+path="res://.godot/imported/mouse_move.png-a7824c528793c46f6a0a50e7a043f452.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/textures/tile_0077.png"
-dest_files=["res://.godot/imported/tile_0077.png-617da2cbec05b5abab808a2aac732b58.ctex"]
+source_file="res://ressources/textures/buttons/mouse_move.png"
+dest_files=["res://.godot/imported/mouse_move.png-a7824c528793c46f6a0a50e7a043f452.ctex"]
 
 [params]
 

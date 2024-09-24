@@ -13,13 +13,13 @@ func _ready() -> void:
 # Used to pause
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
-		get_tree().paused = true
-		show()
+		get_tree().paused = !get_tree().paused
+		visible = !visible
 
 func _on_continue_pressed() -> void:
 	get_tree().paused = false
 	hide()
-	
+
 func _on_retry_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
