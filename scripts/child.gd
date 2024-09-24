@@ -35,15 +35,7 @@ const MAX_BATTERY := 100.0
 const BATTERY_DEPLETE_RATE := 10.0
 const BATTERY_CHARGE_RATE := 20.0
 
-var R_X_AXIS := InputEventJoypadMotion.new()
-var R_Y_AXIS := InputEventJoypadMotion.new()
-
 signal flashlight_used
-
-#func _ready() -> void:
-	#R_X_AXIS.create()
-	#R_X_AXIS.set_axis(2)
-	#R_Y_AXIS.set_axis(3)
 
 func _physics_process(delta: float) -> void:
 #region Animations
@@ -115,18 +107,17 @@ func _physics_process(delta: float) -> void:
 		toggle_flashlight()
 	# Points the flashlight
 	# Mouse support
-	flashlight.look_at(get_global_mouse_position())
+	if Input.get_last_mouse_velocity() != Vector2.ZERO:
+		flashlight.look_at(get_global_mouse_position())
 	# Controler support
 	if Input.get_connected_joypads():
 		var controllerangle := Vector2.ZERO.angle()
 		var xAxisRL := Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
 		var yAxisUD := Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
 		controllerangle = Vector2(xAxisRL, yAxisUD).angle()
-		#R_X_AXIS.set_axis(JOY_AXIS_RIGHT_X)
-		#R_Y_AXIS.set_axis(JOY_AXIS_RIGHT_Y)
-		#print(R_X_AXIS.get_axis_value())
-		#print(R_Y_AXIS.get_axis_value())
-		if xAxisRL != 0:
+		print("X: %s" %xAxisRL)
+		print("Y: %s" %yAxisUD)
+		if abs(xAxisRL) > 0.3 || abs(yAxisUD) > 0.3:
 			flashlight.rotation = controllerangle
 
 	if Input.is_action_just_pressed("cuddle"):
