@@ -56,7 +56,7 @@ func delete_shadow(shadow_node: CharacterBody2D) -> void:
 		max_shadow -= 1
 		wave_objective += 1
 		music_fader.play("fade_into_calm")
-	
+
 func start_wave() -> void:
 	shadow_killed = 0
 	max_shadow += 3
@@ -90,7 +90,7 @@ func _on_lighting_timer_timeout() -> void:
 					setup_thunder(3)
 		else:
 			$LightingTimer.start(randfn(10, 2))
-			
+
 
 # Init thunder timer according to level
 func setup_thunder(level: int) -> void:

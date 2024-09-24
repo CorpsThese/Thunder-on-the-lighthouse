@@ -109,13 +109,12 @@ func _physics_process(delta: float) -> void:
 	# Mouse support
 	flashlight.look_at(get_global_mouse_position())
 	# Controler support
-	#flashlight.look_at(Vector2(Input.get_joy_axis(1, JOY_AXIS_RIGHT_X), Input.get_joy_axis(1, JOY_AXIS_RIGHT_Y)))
 	var controllerangle := Vector2.ZERO.angle()
 	var xAxisRL := Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
 	var yAxisUD := Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
 	controllerangle = Vector2(xAxisRL, yAxisUD).angle()
-	rotation = controllerangle
-	
+	flashlight.rotation = controllerangle
+
 	if Input.is_action_just_pressed("cuddle"):
 		if flashlight.visible:
 			toggle_flashlight()
@@ -183,10 +182,10 @@ func _physics_process(delta: float) -> void:
 func update_key_counter(new_key_counter: int) -> void:
 	key_counter = new_key_counter
 	emit_signal("key_updated", key_counter)
-	
+
 	$Key.visible = key_counter >= 1
 	$Key2.visible = key_counter >= 2
-	
+
 	if key_counter >= 3:
 		print('More than 3 keys are not supported by UI!')
 

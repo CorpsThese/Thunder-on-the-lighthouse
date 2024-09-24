@@ -486,7 +486,8 @@ size = Vector2(86, 25)
 size = Vector2(60, 64)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l0rn1"]
-random_pitch = 2.0
+random_pitch = 4.0
+random_volume_offset_db = 2.0
 streams_count = 1
 stream_0/stream = ExtResource("14_rg2bj")
 
