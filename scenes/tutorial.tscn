@@ -742,7 +742,7 @@ tracks/0/path = NodePath("CalmMusic:volume_db")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(-0.0333333, 1.5),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(0.2, 1),
 "update": 0,
 "values": [-80.0, 8.0]
@@ -754,8 +754,8 @@ tracks/1/path = NodePath("FightMusic:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.53333),
-"transitions": PackedFloat32Array(6, 1),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(3, 1),
 "update": 0,
 "values": [8.0, -80.0]
 }
@@ -771,7 +771,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(4, 1),
+"transitions": PackedFloat32Array(3, 1),
 "update": 0,
 "values": [8.0, -80.0]
 }
@@ -783,7 +783,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(0.25, 1),
+"transitions": PackedFloat32Array(0.2, 1),
 "update": 0,
 "values": [-80.0, 8.0]
 }
@@ -798,7 +798,7 @@ _data = {
 [node name="Tutorial" type="Node"]
 script = ExtResource("1_j7rth")
 max_shadow = 0
-wave_objective = 1
+wave_objective = 2
 next_level = ExtResource("2_weekl")
 
 [node name="Child" parent="." instance=ExtResource("2_4cjjo")]
@@ -822,6 +822,7 @@ script = ExtResource("4_b4ynd")
 randomStrength = 6.0
 
 [node name="ShadowSpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
 
 [node name="Level" type="Node2D" parent="."]
 scale = Vector2(5, 5)

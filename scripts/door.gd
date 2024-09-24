@@ -13,9 +13,3 @@ func _ready() -> void:
 	if is_flip:
 		$DoorSprite.flip_h = is_flip
 		$CollisionShape2D.position.x = 12.5
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
