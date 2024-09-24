@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de6n7pi22qaji"
-path="res://.godot/imported/b_button.png-58a849f81d4fe86d2600e2a7e6a2a8aa.ctex"
+uid="uid://dxdnr84u4fm4s"
+path="res://.godot/imported/tile_0123.png-c675e5378d420ea483fce98dcc7ac0ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/textures/b_button.png"
-dest_files=["res://.godot/imported/b_button.png-58a849f81d4fe86d2600e2a7e6a2a8aa.ctex"]
+source_file="res://ressources/textures/buttons/tile_0123.png"
+dest_files=["res://.godot/imported/tile_0123.png-c675e5378d420ea483fce98dcc7ac0ed.ctex"]
 
 [params]
 

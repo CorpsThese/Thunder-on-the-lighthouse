@@ -11,8 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://psg2b6v1ydao" path="res://ressources/audio/pagancow__dorm-door-opening.wav" id="5_rke8f"]
 [ext_resource type="Texture2D" uid="uid://bse2lv7t12vcx" path="res://ressources/textures/key.png" id="8_nhjae"]
 [ext_resource type="Script" path="res://scripts/interactable_popup.gd" id="9_7tbvx"]
-[ext_resource type="Texture2D" uid="uid://dxdnr84u4fm4s" path="res://ressources/textures/tile_0123.png" id="9_jtwpu"]
-[ext_resource type="Texture2D" uid="uid://c4e1ylhycps2l" path="res://ressources/textures/tile_0048.png" id="10_53gnp"]
+[ext_resource type="Texture2D" uid="uid://de6n7pi22qaji" path="res://ressources/textures/buttons/b_button.png" id="12_au30u"]
+[ext_resource type="Texture2D" uid="uid://dxdnr84u4fm4s" path="res://ressources/textures/buttons/tile_0123.png" id="13_1hw8l"]
 [ext_resource type="AudioStream" uid="uid://dol7x1c71oya6" path="res://ressources/audio/Retro FootStep 03.wav" id="14_rg2bj"]
 [ext_resource type="AudioStream" uid="uid://b0tifqce2nh6k" path="res://ressources/audio/Retro PickUp Coin 04.wav" id="15_o4nwl"]
 [ext_resource type="AudioStream" uid="uid://dqg1qhlierio4" path="res://ressources/audio/Retro FootStep Grass 01.wav" id="16_t2dnf"]
@@ -366,7 +366,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_doehs"]
-size = Vector2(24, 68)
+size = Vector2(24, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_582br"]
 size = Vector2(60, 50)
@@ -391,9 +391,8 @@ script = ExtResource("1_dso0k")
 z_index = 5
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_201e2")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.824311
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 16)
@@ -550,19 +549,20 @@ bus = &"Sounds"
 
 [node name="InteractablePopup" type="Node2D" parent="."]
 position = Vector2(37, -9)
+scale = Vector2(0.692196, 0.692196)
 script = ExtResource("9_7tbvx")
 
 [node name="GamepadB" type="Sprite2D" parent="InteractablePopup"]
 visible = false
 position = Vector2(27, -24)
 scale = Vector2(3.5, 3.5)
-texture = ExtResource("10_53gnp")
+texture = ExtResource("12_au30u")
 
 [node name="FKey" type="Sprite2D" parent="InteractablePopup"]
 visible = false
 position = Vector2(28, -22)
 scale = Vector2(3.6875, 3.6875)
-texture = ExtResource("9_jtwpu")
+texture = ExtResource("13_1hw8l")
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_l0rn1")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://71gpwj53oivi"
-path="res://.godot/imported/a_button.png-939a33bf628cd2cb3400efd9ded71654.ctex"
+uid="uid://dv5hl50kn4vhu"
+path="res://.godot/imported/left_joystick_up-export.png-55f813a0ca79ad1499c6613df3510063.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ressources/textures/a_button.png"
-dest_files=["res://.godot/imported/a_button.png-939a33bf628cd2cb3400efd9ded71654.ctex"]
+source_file="res://ressources/textures/buttons/left_joystick_up-export.png"
+dest_files=["res://.godot/imported/left_joystick_up-export.png-55f813a0ca79ad1499c6613df3510063.ctex"]
 
 [params]
 
