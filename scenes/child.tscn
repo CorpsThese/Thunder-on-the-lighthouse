@@ -214,7 +214,9 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_dikww")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
+fill_to = Vector2(0.95, 0.5)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
 
 [sub_resource type="Animation" id="Animation_7p7kh"]
 length = 0.001
@@ -411,7 +413,7 @@ position = Vector2(0, 40)
 [node name="TeddyBearSprite" type="Sprite2D" parent="TeddyBear"]
 position = Vector2(30, 0)
 rotation = 1.5708
-scale = Vector2(2, 2)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_2fto3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TeddyBear"]
@@ -422,7 +424,7 @@ libraries = {
 [node name="Flashlight" type="Node2D" parent="."]
 visible = false
 z_index = 5
-position = Vector2(0, 16)
+position = Vector2(-4, 16)
 
 [node name="TorchlightLight" type="Area2D" parent="Flashlight"]
 position = Vector2(54, 0)
@@ -431,16 +433,15 @@ collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Flashlight/TorchlightLight"]
 visible = false
-position = Vector2(86, 0)
+position = Vector2(217, 0)
 texture = ExtResource("4_ijt5a")
-offset = Vector2(112, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flashlight/TorchlightLight"]
-polygon = PackedVector2Array(373, -153, 14, -8, 14, 8, 373, 151)
+polygon = PackedVector2Array(400, -174, 14, -8, 14, 8, 400, 173)
 disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Flashlight/TorchlightLight"]
-position = Vector2(180, 2.38419e-07)
+position = Vector2(193, 2.38419e-07)
 scale = Vector2(0.898045, 0.898045)
 shadow_color = Color(1, 1, 1, 0.654902)
 texture = ExtResource("4_ijt5a")

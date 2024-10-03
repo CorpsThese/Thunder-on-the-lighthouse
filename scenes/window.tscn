@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0hh0yrq3thel"]
+[gd_scene load_steps=8 format=3 uid="uid://c0hh0yrq3thel"]
 
 [ext_resource type="Script" path="res://scripts/window.gd" id="1_4xjnq"]
 [ext_resource type="Texture2D" uid="uid://dkms5fqatrkx" path="res://ressources/textures/closed_window.png" id="2_xkeoh"]
@@ -13,7 +13,19 @@ width = 128
 height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
+fill_to = Vector2(1, 0.4)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nal56"]
+gradient = SubResource("Gradient_xkrbe")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.4)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gc5cm"]
 size = Vector2(40, 20)
@@ -40,7 +52,7 @@ texture = ExtResource("3_gmymf")
 [node name="PointLight2D" type="PointLight2D" parent="LightingSprite"]
 position = Vector2(1.90735e-06, 1.90735e-06)
 scale = Vector2(3, 3)
-texture = SubResource("GradientTexture2D_uu378")
+texture = SubResource("GradientTexture2D_nal56")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(24, 38)
