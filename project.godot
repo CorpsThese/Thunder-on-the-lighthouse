@@ -26,6 +26,10 @@ window/size/viewport_height=720
 window/size/mode=3
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom_font="res://ressources/pixel-script-font/PixelScriptRegular-0WnDG.otf"
+
 [input]
 
 pause={
