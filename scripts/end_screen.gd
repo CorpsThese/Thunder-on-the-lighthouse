@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node
 @onready var exit: Button = $Control/HBoxContainer/VBoxContainer/Exit
 @onready var v_box_container: VBoxContainer = $Control/HBoxContainer/VBoxContainer
 
@@ -18,7 +18,7 @@ func _on_exit_pressed() -> void:
 func _on_credits_pressed() -> void:
 	$Control/CreditsPanel.visible = !$Control/CreditsPanel.visible
 	$Control/EndText.visible = !$Control/EndText.visible
-	
+
 
 func _on_thunder_timer_timeout() -> void:
 	$ThunderSound.play()

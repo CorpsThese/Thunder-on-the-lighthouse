@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://cjo607hfvr2dn"]
+[gd_scene load_steps=62 format=4 uid="uid://cjo607hfvr2dn"]
 
 [ext_resource type="Script" path="res://scripts/lighthouse.gd" id="1_j7rth"]
 [ext_resource type="PackedScene" uid="uid://cmqg83tvc3wae" path="res://scenes/child.tscn" id="2_4cjjo"]
@@ -29,7 +29,10 @@
 [ext_resource type="Texture2D" uid="uid://c34taqw1wajvx" path="res://ressources/textures/buttons/mouse_move.png" id="18_y2vbh"]
 [ext_resource type="Texture2D" uid="uid://d28sdbvb72bfr" path="res://ressources/textures/buttons/left_joystick_down-export.png" id="21_4jd3k"]
 [ext_resource type="Texture2D" uid="uid://71gpwj53oivi" path="res://ressources/textures/buttons/a_button.png" id="21_cq357"]
+[ext_resource type="Texture2D" uid="uid://d4njtocgfys8a" path="res://ressources/textures/buttons/space_button.png" id="22_8tsmv"]
+[ext_resource type="Texture2D" uid="uid://crmfx3foygiis" path="res://ressources/textures/buttons/start_button.png" id="22_hnue1"]
 [ext_resource type="Texture2D" uid="uid://c1w3f7k3i5qjc" path="res://ressources/textures/buttons/s_key.png" id="22_wrq64"]
+[ext_resource type="Texture2D" uid="uid://ck7vnfu6r5y4a" path="res://ressources/textures/buttons/tab_button.png" id="23_ip85n"]
 [ext_resource type="AudioStream" uid="uid://c2m1ibdhms3w2" path="res://ressources/audio/Retro Swooosh 16.wav" id="27_h0u8r"]
 
 [sub_resource type="Curve2D" id="Curve2D_lqdu0"]
@@ -898,7 +901,7 @@ offset_bottom = 247.0
 scale = Vector2(0.392, 0.392)
 theme = ExtResource("9_bu06t")
 theme_override_fonts/font = SubResource("FontVariation_uwpb1")
-text = "Cuddle your plush when thunder is heard
+text = "Cuddle your plush when you hear thunder
 Hold      /    "
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -913,9 +916,9 @@ texture = ExtResource("14_8r4eb")
 
 [node name="FlashlightTip" type="Label" parent="Level"]
 offset_left = 157.2
-offset_top = 135.0
+offset_top = 137.8
 offset_right = 349.2
-offset_bottom = 159.0
+offset_bottom = 161.8
 scale = Vector2(0.392, 0.392)
 theme = ExtResource("9_bu06t")
 text = "Press     /     for flashlight"
@@ -964,7 +967,7 @@ scale = Vector2(0.392, 0.392)
 theme = ExtResource("9_bu06t")
 theme_override_fonts/font = SubResource("FontVariation_uwpb1")
 text = "Defeat Shadows
-to build your Courage back!"
+to build your Courage back"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -989,24 +992,44 @@ position = Vector2(39, 30)
 texture = ExtResource("16_v1u1l")
 
 [node name="Jump" type="Label" parent="Level"]
-offset_left = 59.0
-offset_top = 91.6
-offset_right = 109.0
-offset_bottom = 132.6
+offset_left = 46.2
+offset_top = 121.8
+offset_right = 96.2
+offset_bottom = 162.8
 scale = Vector2(0.392, 0.392)
 theme = ExtResource("9_bu06t")
 theme_override_constants/line_spacing = -6
-text = "Jump
+text = "   Jump
 /"
 horizontal_alignment = 1
 
 [node name="Tile0077" type="Sprite2D" parent="Level/Jump"]
-position = Vector2(9, 31)
+position = Vector2(10.7143, 31.1224)
 texture = ExtResource("21_cq357")
 
 [node name="Tile0078" type="Sprite2D" parent="Level/Jump"]
-position = Vector2(39, 30)
-texture = ExtResource("16_v1u1l")
+position = Vector2(54.5918, 31.6327)
+texture = ExtResource("22_8tsmv")
+
+[node name="Pause" type="Label" parent="Level"]
+offset_left = 163.0
+offset_top = 56.6
+offset_right = 213.0
+offset_bottom = 97.6
+scale = Vector2(0.392, 0.392)
+theme = ExtResource("9_bu06t")
+theme_override_constants/line_spacing = -6
+text = "Pause
+/"
+horizontal_alignment = 1
+
+[node name="Tile0077" type="Sprite2D" parent="Level/Pause"]
+position = Vector2(9, 31)
+texture = ExtResource("22_hnue1")
+
+[node name="Tile0078" type="Sprite2D" parent="Level/Pause"]
+position = Vector2(45.4082, 31.6327)
+texture = ExtResource("23_ip85n")
 
 [node name="Drop" type="Label" parent="Level"]
 offset_left = 319.0

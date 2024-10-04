@@ -207,21 +207,59 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_435t3"]
 size = Vector2(42, 64)
 
-[sub_resource type="Gradient" id="Gradient_dikww"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_eemk3"]
+colors = PackedColorArray(0.821789, 0.821789, 0.821789, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_isire"]
-gradient = SubResource("Gradient_dikww")
+gradient = SubResource("Gradient_eemk3")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
 
 [sub_resource type="Animation" id="Animation_7p7kh"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TeddyBearSprite:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TeddyBearSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(26, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TeddyBearSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.5, 2.5)]
+}
 
 [sub_resource type="Animation" id="Animation_17u5c"]
 resource_name = "cuddling"
-length = 1.5
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -230,10 +268,34 @@ tracks/0/path = NodePath("TeddyBearSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.6, 1.4, 1),
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(0.6, 0.6),
 "update": 0,
-"values": [Vector2(30, 0), Vector2(30, -6), Vector2(30, 6)]
+"values": [Vector2(26, -6), Vector2(26, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TeddyBearSprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.10472, 0.10472]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TeddyBearSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.5, 2.5), Vector2(2, 2.5)]
 }
 
 [sub_resource type="Animation" id="Animation_5qwpv"]
@@ -406,12 +468,11 @@ texture = SubResource("GradientTexture2D_isire")
 [node name="TeddyBear" type="Node2D" parent="."]
 visible = false
 z_index = 10
-position = Vector2(0, 40)
+position = Vector2(0, 20)
 
 [node name="TeddyBearSprite" type="Sprite2D" parent="TeddyBear"]
-position = Vector2(30, 0)
-rotation = 1.5708
-scale = Vector2(2, 2)
+position = Vector2(26, 0)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_2fto3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TeddyBear"]
@@ -422,7 +483,7 @@ libraries = {
 [node name="Flashlight" type="Node2D" parent="."]
 visible = false
 z_index = 5
-position = Vector2(0, 16)
+position = Vector2(-4, 16)
 
 [node name="TorchlightLight" type="Area2D" parent="Flashlight"]
 position = Vector2(54, 0)
@@ -431,17 +492,15 @@ collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Flashlight/TorchlightLight"]
 visible = false
-position = Vector2(86, 0)
+position = Vector2(217, 0)
 texture = ExtResource("4_ijt5a")
-offset = Vector2(112, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flashlight/TorchlightLight"]
-polygon = PackedVector2Array(373, -153, 14, -8, 14, 8, 373, 151)
+polygon = PackedVector2Array(400, -174, 14, -8, 14, 8, 400, 173)
 disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Flashlight/TorchlightLight"]
-position = Vector2(180, 2.38419e-07)
-scale = Vector2(0.898045, 0.898045)
+position = Vector2(217, 2.38419e-07)
 shadow_color = Color(1, 1, 1, 0.654902)
 texture = ExtResource("4_ijt5a")
 
