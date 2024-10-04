@@ -207,11 +207,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_435t3"]
 size = Vector2(42, 64)
 
-[sub_resource type="Gradient" id="Gradient_dikww"]
+[sub_resource type="Gradient" id="Gradient_eemk3"]
 colors = PackedColorArray(0.821789, 0.821789, 0.821789, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_isire"]
-gradient = SubResource("Gradient_dikww")
+gradient = SubResource("Gradient_eemk3")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
@@ -500,8 +500,7 @@ polygon = PackedVector2Array(400, -174, 14, -8, 14, 8, 400, 173)
 disabled = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Flashlight/TorchlightLight"]
-position = Vector2(193, 2.38419e-07)
-scale = Vector2(0.898045, 0.898045)
+position = Vector2(217, 2.38419e-07)
 shadow_color = Color(1, 1, 1, 0.654902)
 texture = ExtResource("4_ijt5a")
 
