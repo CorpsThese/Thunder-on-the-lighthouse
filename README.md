@@ -1,4 +1,4 @@
-Originaly made for the Brackey's Game Jam 2024.2 ranked 45th. Made in 7 days by a team of two, **Cortez and ElGinas**, and the help of a composer, **SamWritesMusic**
+Originaly made for the Brackey's Game Jam 2024.2 ranked 45th. Made in 7 days by a team of two, **Cortez and ElGinas**, and the help of a composer, **SamWritesMusic**.
 
 Itch.io page: https://corpsthese.itch.io/thunder-on-the-lighthouse
 
