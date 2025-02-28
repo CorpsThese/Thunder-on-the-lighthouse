@@ -1,4 +1,4 @@
-Originaly made for the Brackey's Game Jam 2024.2 ranked 45th. Made in 7 days by a team of two, **Cortez and ElGinas**, and the help of a composer, **SamWritesMusic**.
+Originaly made for the Brackey's Game Jam 2024.2 ranked 45th. Made in 7 days by a team of two, **Cortez and ELginas**, and the help of a composer, **SamWritesMusic**.
 
 Itch.io page: https://corpsthese.itch.io/thunder-on-the-lighthouse
 
@@ -6,7 +6,7 @@ Itch.io page: https://corpsthese.itch.io/thunder-on-the-lighthouse
 ## Code
 Cortez https://corpsthese.itch.io/
 
-Elginas https://elginas.itch.io/
+ELginas https://elginas.itch.io/
 
 ## Musics
 Game musics SamWritesMusic https://www.youtube.com/@samwritesmusic5402
