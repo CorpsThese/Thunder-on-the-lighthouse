@@ -18,10 +18,15 @@ Both modified and expanded by Cortez
 
 ## Sounds
 benjaminnelan door-locked https://freesound.org/people/BenjaminNelan/sounds/321087/
+
 pagancow dorm-door-opening https://freesound.org/people/pagancow/sounds/15419/
+
 pnmcarrierailfan thunder-claps-single-clap-02 https://freesound.org/people/PNMCarrieRailfan/sounds/682352/
+
 onesoundtorulethemall thunder15 https://freesound.org/people/OneSoundToRuleThemAll/sounds/238796/
+
 bastipictures rain-against-window https://freesound.org/people/bastipictures/sounds/243774/
+
 sadiquecat flashlight-button-press https://freesound.org/people/Sadiquecat/sounds/706439/
 From Retro FreeSFX https://kronbits.itch.io/freesfx
 PickUp
