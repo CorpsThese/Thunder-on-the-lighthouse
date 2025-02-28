@@ -3,7 +3,8 @@ Itch.io page: https://corpsthese.itch.io/thunder-on-the-lighthouse
 
 # Credits
 ## Code
-Cortez & Elginas
+Cortez https://corpsthese.itch.io/
+Elginas https://elginas.itch.io/
 
 ## Musics
 Game musics SamWritesMusic https://www.youtube.com/@samwritesmusic5402
